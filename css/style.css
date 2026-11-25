@@ -1,0 +1,1219 @@
+/* ==========================================================================
+   1. RESET & BASE STYLES
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --dark-blue: #1A2F50;      /* Primary Navy Blue */
+  --primary-blue: #0F2537;   /* Darker Navy Accent */
+  --accent-blue: #1E3A8A;    /* Solid Accent Blue */
+  --card-bg: #F0F4F8;        /* Soft Cool Gray-White */
+  --text-dark: #0A192F;
+  --text-muted: #475569;
+  --white: #FFFFFF;
+}
+
+body {
+  background-color: var(--white);
+  color: var(--text-dark);
+  font-family: 'Source Serif Pro', Georgia, serif;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   2. TOP UTILITY BAR
+   ========================================================================== */
+.top-bar {
+  background-color: var(--dark-blue) !important;
+  color: var(--white) !important;
+  padding: 6px 5% !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  font-size: 0.82rem !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.top-bar .contact-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.top-bar .contact-info span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.top-bar a {
+  color: var(--white) !important;
+  text-decoration: none !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ==========================================================================
+   3. MAIN NAVIGATION HEADER BAR (DARK BLUE THEME)
+   ========================================================================== */
+header {
+  background-color: var(--dark-blue) !important;
+  box-shadow: 0 4px 12px rgba(10, 25, 47, 0.15) !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  padding: 12px 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.nav-container {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+}
+
+.logo-container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  text-decoration: none !important;
+}
+
+.logo-sticker-effect,
+.site-logo,
+.logo-container img {
+  height: 50px !important;
+  width: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
+.logo-text h1 {
+  font-size: 1.35rem !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+  margin: 0 !important;
+  line-height: 1.1 !important;
+  font-family: 'Source Serif Pro', Georgia, serif !important;
+}
+
+.logo-text p {
+  font-size: 0.65rem !important;
+  color: #B0C4DE !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  margin: 0 !important;
+  font-family: 'Source Serif Pro', Georgia, serif !important;
+  font-weight: 700 !important;
+}
+
+/* NAVIGATION LINKS & GOLD HOVER STATES */
+.nav-links {
+  display: flex !important;
+  list-style: none !important;
+  gap: 25px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  align-items: center !important;
+}
+
+.nav-links a {
+  text-decoration: none !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  font-family: 'Source Serif Pro', Georgia, serif !important;
+  padding-bottom: 4px !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  transition: color 0.2s ease !important;
+  position: relative !important;
+}
+
+.nav-links a:hover,
+.nav-links a:focus,
+.nav-links a:active,
+.nav-links a:visited:hover {
+  color: #FFB800 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.nav-links a:visited {
+  color: #ffffff !important;
+}
+
+.nav-links a.active {
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  border-bottom: 2px solid #FFB800 !important;
+  padding-bottom: 4px !important;
+}
+
+/* ==========================================================================
+   4. HERO BANNER & SHARED SECTION STYLES
+   ========================================================================== */
+.hero-banner {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 80px) !important;
+  min-height: 480px;
+  overflow: hidden;
+  background-color: var(--dark-blue);
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover !important;
+  object-position: center 62% !important;
+  opacity: 0.9;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.4));
+  display: flex;
+  align-items: center;
+  padding: 0 8%;
+}
+
+.hero-content {
+  color: var(--white);
+  max-width: 650px;
+}
+
+.hero-content h2 {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  opacity: 0.9;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: var(--text-dark);
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 4px;
+  border: 2px solid var(--white);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--white);
+  color: var(--text-dark);
+}
+
+section {
+  padding: 70px 8%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.section-title h2 {
+  font-size: 2.2rem;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  font-weight: 800;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: var(--text-dark);
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+.page-title-section {
+  text-align: center;
+  padding: 50px 20px 20px;
+}
+
+.page-title-section h1 {
+  color: #0A192F;
+  font-size: 3rem;
+  font-weight: 800;
+  font-family: 'Source Serif Pro', Georgia, serif !important;
+  margin: 0;
+}
+
+/* ==========================================================================
+   5. CARDS, EVENTS & PARTNERS LAYOUTS
+   ========================================================================== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.about-text p {
+  margin-bottom: 15px;
+  color: var(--text-muted);
+}
+
+.about-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.info-card {
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: 8px;
+  border-left: 5px solid var(--text-dark);
+}
+
+.info-card h4 {
+  color: var(--text-dark);
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.event-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.event-card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 15px 35px rgba(10, 25, 47, 0.2) !important;
+}
+
+.event-card:hover .event-img-box img {
+  opacity: 0.6 !important;
+  transform: scale(1.06) !important;
+}
+
+.event-img-box {
+  background-color: var(--dark-blue) !important;
+}
+
+.hover-img {
+  transition: opacity 0.4s ease, transform 0.4s ease !important;
+}
+
+.hover-img:hover {
+  opacity: 0.6 !important;
+  transform: scale(1.05) !important;
+  cursor: pointer;
+}
+
+/* Partners Styles */
+.partners-grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  align-items: center;
+  justify-items: center;
+}
+
+.partner-item {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.partner-item.partner-wide {
+  grid-column: span 2;
+}
+
+.partner-item img {
+  max-width: 160px;
+  max-height: 110px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.partner-item img:hover {
+  transform: scale(1.08);
+  opacity: 0.85;
+}
+
+/* Faculty Section Buttons */
+.faculty-btn {
+  display: block;
+  width: 100%;
+  padding: 16px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Source Serif Pro', Georgia, serif !important;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.faculty-btn.active {
+  background-color: var(--dark-blue);
+  color: #FFB800;
+  border: 2px solid var(--dark-blue);
+}
+
+.faculty-btn.outline {
+  background-color: var(--white);
+  color: #0B192C;
+  border: 2px solid #E2E8F0;
+}
+
+.faculty-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.faculty-btn.outline:hover {
+  background-color: var(--dark-blue);
+  color: var(--white);
+  border-color: var(--dark-blue);
+}
+
+.faculty-btn.active:hover {
+  background-color: #14243E;
+  color: #FFC72C;
+}
+
+.programs-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 35px;
+  max-width: 1150px;
+  margin: 10px auto 60px;
+  padding: 0 20px;
+  flex-wrap: wrap;
+}
+
+/* Smooth Fade-in effect para sa mga larawan */
+.event-card img {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out, transform 0.3s ease;
+}
+
+.event-card img.loaded {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   6. ADMISSIONS PAGE STYLES
+   ========================================================================== */
+.admissions-hero {
+  padding: 30px 0;
+  background-color: #ffffff;
+}
+
+.admission-banner-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.policies-section {
+  padding: 40px 0;
+}
+
+.policy-card {
+  position: relative;
+  border: 2px solid #1a2b4c;
+  border-radius: 35px;
+  padding: 40px;
+  margin: 20px auto;
+  max-width: 900px;
+  background-color: #ffffff;
+}
+
+.policy-title {
+  position: absolute;
+  top: -24px;
+  left: 50px;
+  background: #ffffff;
+  padding: 0 15px;
+  color: #1a2b4c;
+  font-size: 2.2rem;
+  font-weight: 700;
+  font-family: 'Source Serif Pro', Georgia, serif !important;
+}
+
+.policy-content p {
+  color: #333333;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+.requirements-section {
+  padding: 40px 0 60px 0;
+}
+
+.section-heading {
+  color: #1a2b4c;
+  font-size: 2.8rem;
+  font-family: 'Source Serif Pro', Georgia, serif !important;
+  margin-bottom: 35px;
+}
+
+.req-buttons-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.req-pill {
+  background: #ffffff;
+  border: 1px solid #d0d0d0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  border-radius: 50px;
+  padding: 14px 35px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a2b4c;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.req-pill:hover {
+  background-color: #1a2b4c;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* ==========================================================================
+   7. FOOTER
+   ========================================================================== */
+footer, .footer {
+  background-color: var(--dark-blue);
+  color: var(--white);
+  padding: 50px 40px 20px;
+  font-family: 'Source Serif Pro', Georgia, serif !important;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  margin-top: 40px;
+  text-align: left;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-col h3 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+.footer-col p, .footer-links a {
+  color: #d1d5db;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-decoration: none;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.social-icons a {
+  color: #ffffff;
+  font-size: 1.3rem;
+  margin-right: 15px;
+}
+
+.tagline-col .tagline {
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 30px auto 0;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+/* ==========================================================================
+   8. GLOBAL PERFORMANCE & SMOOTH SCROLL OPTIMIZATIONS
+   ========================================================================== */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+*, *::before, *::after {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+}
+
+html body *:not(.fa):not([class*="fa-"]):not(.fab):not(.fas):not(.far) {
+  font-family: 'Source Serif Pro', Georgia, serif !important;
+}
+
+a, button, .info-box, .contact-card-outer, .testimonial-card, .life-card-outer {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+header,
+footer,
+main,
+section,
+.card,
+.event-card,
+.news-card,
+.contact-card-outer,
+.info-box,
+.carousel,
+.slider,
+button,
+.submit-btn,
+.directions-btn,
+iframe,
+img {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  contain: content;
+}
+
+.card, 
+.event-card, 
+.contact-card-outer, 
+.info-box {
+  box-shadow: 0 4px 16px rgba(10, 25, 47, 0.08) !important;
+}
+
+img {
+  content-visibility: auto;
+  image-rendering: -webkit-optimize-contrast;
+  max-width: 100%;
+  height: auto;
+}
+
+.logo-sticker-effect {
+  border: none;
+  box-shadow: none;
+  filter: none;
+}
+
+/* ==========================================================================
+   10. CLEAN DESKTOP NAVIGATION STYLES (Ilagay sa labas ng media query)
+   ========================================================================== */
+.main-header {
+  background-color: #1A2F50 !important;
+  padding: 12px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.main-header .nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.main-header .logo-container {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+
+.main-header .logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-header .logo-text h1 {
+  color: #ffffff !important;
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-family: 'Source Serif Pro', Georgia, serif !important;
+}
+
+.main-header .logo-text p {
+  color: #B0C4DE !important;
+  font-size: 0.65rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'Source Serif Pro', Georgia, serif !important;
+}
+
+.main-header .nav-links {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.main-header .nav-links a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.main-header .nav-links a.active {
+  border-bottom: 2px solid #FFB800;
+  padding-bottom: 4px;
+}
+
+
+/* ==========================================================================
+   9. ADVANCED MOBILE RESPONSIVE MEDIA QUERY (Max-width: 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Header & Navigation Stack Fix para sa Mobile */
+  header, .main-header, .nav-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    padding: 10px !important;
+    box-sizing: border-box !important;
+  }
+
+  .main-header .logo-container {
+    justify-content: center !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+
+  .main-header .logo-text {
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .nav-links, .main-header .nav-links {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px 14px !important;
+    padding: 10px 0 0 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  .nav-links li {
+    margin: 0 !important;
+  }
+
+  .nav-links li a, .main-header .nav-links a {
+    font-size: 0.85rem !important;
+  }
+
+  /* Grids at Flex Containers to Single Column */
+  .about-grid, 
+  .contact-grid, 
+  .map-grid,
+  .form-grid-2,
+  .life-grid-2,
+  .vision-mission-container,
+  .about-cards,
+  .news-grid,
+  div[style*="display: grid"],
+  div[style*="display: flex"] {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    gap: 20px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .partners-grid, .partners-grid-container {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
+  }
+
+  .partner-item.partner-wide {
+    grid-column: span 1 !important;
+  }
+
+  /* Cards at Containers */
+  .contact-card-outer,
+  .testimonial-card,
+  .life-card-outer,
+  .policy-card {
+    padding: 20px 15px !important;
+    border-radius: 20px !important;
+    margin-bottom: 20px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .policy-title {
+    position: static !important;
+    background: transparent !important;
+    font-size: 1.6rem !important;
+    margin-bottom: 10px !important;
+    padding: 0 !important;
+  }
+
+  .info-box {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 15px !important;
+  }
+
+  .info-box-text, 
+  .info-box-text a, 
+  p, 
+  span {
+    white-space: normal !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  /* Images, Videos, Iframes */
+  img, video, iframe {
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .map-frame-wrapper {
+    width: 100% !important;
+    height: 250px !important;
+  }
+
+  /* Font Adjustments */
+  h1 {
+    font-size: 1.8rem !important;
+  }
+
+  h2 {
+    font-size: 1.4rem !important;
+  }
+
+  .hero-content h2 {
+    font-size: 1.8rem !important;
+  }
+
+  .page-title-section h1 {
+    font-size: 2.2rem !important;
+  }
+
+  section {
+    padding: 40px 15px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Footer Mobile Alignment */
+  footer, .footer {
+    padding: 30px 20px 20px !important;
+    text-align: center !important;
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+  }
+
+  .footer-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 30px !important;
+  }
+
+  .footer-col, .tagline-col {
+    text-align: center !important;
+    align-items: center !important;
+  }
+
+  .tagline-col .tagline {
+    font-size: 1.6rem !important;
+    text-align: center !important;
+  }
+
+  .footer-bottom {
+    text-align: center !important;
+  }
+  /* Pang-desktop na disenyo */
+.hero-banner {
+  height: calc(100vh - 80px);
+}
+.event-img-box {
+  height: 320px;
+}
+/* Pang-mobile na disenyo (Kusang i-a-apply kapag cellphone ang ginamit) */
+/* ==========================================================
+   SABAY NA PAG-AYOS NG HERO BANNER AT EVENT IMAGES SA MOBILE
+   ========================================================== */
+@media (max-width: 768px) {
+  
+  /* 1. Para sa Hero Banner at Video sa Itaas */
+  .hero-banner {
+    width: 100% !important;
+    height: 240px !important; /* Eksaktong taas para sakto sa mobile screen */
+    min-height: 240px !important;
+    max-height: 240px !important;
+    overflow: hidden !important;
+    background-color: #1A2F50 !important;
+  }
+
+  .hero-video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+  }
+
+  /* 2. Para sa News & Events Image Boxes sa Ibaba (Inalis ang kulay asul) */
+  .event-img-box {
+    width: 100% !important;
+    height: auto !important; /* Hinayaang sumunod sa laki ng pic para walang lumitaw na asul */
+    max-height: none !important;
+    overflow: hidden !important;
+    background-color: transparent !important; /* Tinanggal ang #1A2F50 */
+  }
+
+  .event-img-box img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    display: block !important;
+    background-color: #ffffff !important;
+  }
+
+}
+@media (max-width: 768px) {
+  /* Pantayin ang unang heading sa about.html para lumapit sa navbar gaya ng ibang page */
+  .about-page h1, 
+  .about-page .page-title,
+  .about-page .main-content > h1:first-child,
+  body.about-page > section:first-of-type h1 {
+    margin-top: 5px !important;
+    padding-top: 5px !important;
+  }
+
+  /* Tanggalin ang sobrang espasyo sa itaas ng pinakaunang container ng About Us */
+  .about-page .about-container:first-child,
+  .about-page section:first-of-type {
+    margin-top: 0 !important;
+    padding-top: 5px !important;
+  }
+}
+/* ==========================================================
+   FOOTER MOBILE FIX: TABI-TABI ANG SOCIAL ICONS AT SAKTO ANG ALIGNMENT
+   ========================================================== */
+@media (max-width: 768px) {
+
+  /* Siguruhing hindi mapipilitang pababa ang social media container */
+  footer div[style*="gap: 15px"] {
+    display: flex !important;
+    flex-direction: row !important; /* Piliting magkakatabi / horizontal */
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 20px !important;
+    width: 100% !important;
+    margin-top: 5px !important;
+  }
+
+  /* Siguruhing naka-inline block/flex ang bawat icon link */
+  footer div[style*="gap: 15px"] a {
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: auto !important;
+  }
+
+  /* Ayusin ang alignment ng tagline sa mobile para sa gitna */
+  footer h2[style*="Locally Relevant"] {
+    text-align: center !important;
+    font-size: 1.6rem !important;
+    margin-top: 10px !important;
+  }
+/* ==========================================================
+   TARGETED FIX PARA SA ABOUT.HTML LAMANG (HINDI DAMAY ANG ACADEMICS)
+   ========================================================== */
+@media (max-width: 768px) {
+
+  /* Targetin lamang ang about page elements */
+  .about-page section,
+  .about-banner,
+  .about-container {
+    min-height: auto !important;
+    height: auto !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+
+  /* Targetin ang spacing ng vision/mission sa about page */
+  .about-page .vision-mission-section,
+  .about-page .vision-container {
+    margin-top: 10px !important;
+    padding-top: 5px !important;
+  }
+
+}
+}
+/* ==========================================================
+   FORCE REMOVE HUGE SPACING SA ABOUT.HTML LANG (HINDI DAMAY ANG IBA)
+   ========================================================== */
+@media (max-width: 768px) {
+
+  /* Tanggalin ang sobrang height at padding sa mga container ng about page lang */
+  .about-page .about-container,
+  .about-page .about-image,
+  .about-page .about-banner,
+  .about-page section,
+  .about-page div {
+    min-height: 0 !important;
+    height: auto !important;
+  }
+
+  /* Ilapit ang larawan at hilahin pataas ang Vision section sa about page lang */
+  .about-page .about-banner img,
+  .about-page .about-image img,
+  .about-page div img {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Ayusin ang top spacing ng Vision text container sa about page lang */
+  .about-page .vision-mission-section,
+  .about-page .vision-container,
+  .about-page div:has(> h2),
+  .about-page div:has(> h3) {
+    margin-top: 10px !important;
+    padding-top: 10px !important;
+  }
+
+}
+/* ==========================================================
+   FLOATING BACK TO TOP BUTTON (DESKTOP & MOBILE FIX)
+   ========================================================== */
+
+/* 1. Base Styles (Para sa parehong PC at Mobile) */
+#backToTopBtn {
+  display: none; /* Nakatago bilang default sa itaas */
+  position: fixed !important;
+  bottom: 30px !important;
+  right: 30px !important;
+  z-index: 99999 !important;
+  
+  width: 50px !important;
+  height: 50px !important;
+  background-color: #FFB800 !important; /* Bright Yellow */
+  color: #1A2F50 !important; /* Navy Blue Icon */
+  border: none !important;
+  border-radius: 50% !important; /* Perfect Circle */
+  font-size: 20px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  
+  /* Piliting nakagitna ang arrow sa loob ng bilog */
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  line-height: 1 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Hover Effect sa Desktop */
+#backToTopBtn:hover {
+  transform: translateY(-4px) scale(1.08) !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4) !important;
+  background-color: #FFA800 !important;
+}
+
+/* 2. Adjustment para sa Mobile View */
+@media (max-width: 768px) {
+  #backToTopBtn {
+    bottom: 20px !important;
+    right: 20px !important;
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 18px !important;
+  }
+}
+/* ==========================================================
+   FIXED BACK TO TOP BUTTON (DESKTOP & MOBILE)
+   ========================================================== */
+#backToTopBtn {
+  display: none; /* Nakatago habang nasa itaas */
+  position: fixed !important;
+  bottom: 30px !important;
+  right: 30px !important;
+  z-index: 99999 !important;
+  
+  width: 50px !important;
+  height: 50px !important;
+  background-color: #FFB800 !important; /* Kulay Dilaw */
+  color: #1A2F50 !important; /* Kulay Navy Blue ng Arrow */
+  border: none !important;
+  border-radius: 50% !important; /* Pabilog */
+  font-size: 24px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  
+  /* Pag-center ng arrow icon */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  line-height: 1 !important;
+  padding: 0 !important;
+  
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+#backToTopBtn:hover {
+  transform: translateY(-4px) scale(1.08) !important;
+  background-color: #FFA800 !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Pantanggal ng puting background box o maling pwesto sa mobile */
+@media (max-width: 768px) {
+  #backToTopBtn {
+    bottom: 20px !important;
+    right: 20px !important;
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 20px !important;
+  }
+}
+/* ==========================================================
+   MERCADO COLLEGE - GLOBAL SMOOTH & PERFORMANCE CSS
+   ================================================---------- */
+
+/* 1. Global Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 2. Premium & Natural Transitions para sa lahat ng interactive elements */
+a, button, .back-btn-header, .gallery-item img, input, select {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* 3. Smooth Image Zoom Effect sa Gallery o News Cards */
+.gallery-item {
+  overflow: hidden !important;
+  background-color: transparent !important; /* Iwas asul o abong background */
+}
+
+.gallery-item img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05); /* Banayad at smooth na pag-zoom kapag tinapatan ng mouse */
+}
+
+/* 4. Hardware Acceleration (GPU Optimization para iwas lag/stutter) */
+.gallery-item, .main-featured-img, .top-header, footer {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* 5. Custom Text Selection (Kulay Navy Blue at Gold para sa tema ng school) */
+::selection {
+  background-color: #FFB800; /* Gold */
+  color: #11223f;          /* Dark Navy Blue */
+}
+
+/* 6. Pangkalahatang proteksyon sa layout para hindi mag-overflow sa mobile */
+body {
+  overflow-x: hidden !important;
+  -webkit-font-smoothing: antialiased; /* Para mas lumitaw na malinaw ang mga fonts */
+}
+
+
+
+}
