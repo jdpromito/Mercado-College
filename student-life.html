@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Life - Mercado College</title>
+  
+  <!-- FontAwesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* Body Background Fix: Hindi na pure white, mas pampakalma sa mata */
+    body {
+      background-color: #F8FAFC !important;
+    }
+
+    /* Clean Elevated Cards na May Subtle Top Accent */
+    .life-card-outer {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 35px;
+      border: 1px solid #E2E8F0;
+      border-top: 5px solid #0A192F; /* Dark Blue Accent Line */
+      box-shadow: 0 10px 25px rgba(10, 25, 47, 0.04);
+      transition: all 0.3s ease;
+    }
+
+    .life-card-outer:hover {
+      box-shadow: 0 14px 30px rgba(10, 25, 47, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .life-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    /* Icon Header Badge */
+    .card-title-group {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .icon-badge {
+      width: 48px;
+      height: 48px;
+      background-color: #0A192F;
+      color: #FFC72C; /* Gold Icon Text */
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .life-card-title {
+      color: #0A192F;
+      font-size: 2.2rem;
+      font-weight: 800;
+      font-family: 'Source Serif Pro', Georgia, serif;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .life-img-container {
+      width: 100%;
+      height: 320px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #CBD5E1;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      background-color: #ffffff;
+    }
+
+    .life-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Clean Slider / Carousel Styles (Puti at Walang Asul) */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      height: 320px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #CBD5E1;
+      background-color: #ffffff; /* Pinalitan mula sa asul patungong puti */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .carousel-slide {
+      display: none;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .carousel-slide.active {
+      display: block;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0.3; }
+      to { opacity: 1; }
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Malinis na Puti at Gold Caption para mawala ang dark blue gradient */
+    .carousel-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95); /* Semi-transparent white background */
+      color: #0A192F; /* Dark blue text para malinaw basahin */
+      padding: 15px 20px;
+      font-family: 'Source Serif Pro', Georgia, serif;
+      font-size: 0.95rem;
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: 0.5px;
+      z-index: 5;
+      border-top: 1px solid #E2E8F0;
+    }
+
+    /* Clean Navigation Buttons */
+    .carousel-btn {
+      position: absolute;
+      top: 42%; /* Medyo itinaas para hindi matakpan ng caption box */
+      transform: translateY(-50%);
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #0A192F;
+      border: none;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .carousel-btn:hover {
+      background-color: #ffffff;
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .prev-btn { left: 12px; }
+    .next-btn { right: 12px; }
+
+    /* Indicator Dots */
+    .carousel-dots {
+      position: absolute;
+      top: 15px; /* Inilipat sa itaas ng larawan para hindi sumabay sa puting caption */
+      right: 15px;
+      display: flex;
+      gap: 6px;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 6px 10px;
+      border-radius: 20px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background-color: #FFC72C;
+      width: 20px;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 900px) {
+      .life-grid-2 {
+        grid-template-columns: 1fr !important;
+        gap: 25px !important;
+      }
+      .life-card-outer {
+        padding: 25px 18px;
+      }
+      .carousel-container {
+        height: 260px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header / Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo-container">
+        <img src="assets/logoto.png" alt="Mercado College Logo" class="site-logo" style="height: 50px; width: auto;">
+        <div class="logo-text">
+          <h1>Mercado College</h1>
+          <p>EXCELLENCE & INTEGRITY</p>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="academics.html">Academics</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="student-life.html" class="active">Student Life</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+
+  <!-- TITLE SECTION -->
+  <section style="max-width: 1200px; margin: 40px auto 20px; padding: 0 20px; text-align: left;">
+    <h1 style="color: #0A192F; font-size: 3.2rem; font-weight: 800; font-family: 'Source Serif Pro', Georgia, serif; margin: 0 0 10px 0;">
+      Student Life
+    </h1>
+    <p style="color: #475569; font-size: 1.1rem; max-width: 800px; margin: 0; line-height: 1.6; font-family: 'Source Serif Pro', Georgia, serif;">
+      Discover a vibrant campus community at Mercado College where academic rigor meets holistic growth through organizations, annual events, and student support services.
+    </p>
+  </section>
+
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main style="max-width: 1200px; margin: 20px auto 60px; padding: 0 20px; box-sizing: border-box;">
+
+    <!-- SECTION 1: CAMPUS ORGANIZATIONS -->
+    <div class="life-card-outer">
+      <div class="life-grid-2">
+        <div>
+          <div class="card-title-group">
+            <div class="icon-badge"><i class="fa-solid fa-users"></i></div>
+            <h2 class="life-card-title">Campus Organizations</h2>
+          </div>
+          <p style="color: #475569; font-size: 1.02rem; line-height: 1.7; font-family: 'Source Serif Pro', Georgia, serif; margin: 0;">
+            Empowering student leaders through active participation in academic societies, cultural clubs, and community extension programs. Students are encouraged to hone their teamwork, communication, and leadership skills outside the classroom.
+          </p>
+        </div>
+        <div class="life-img-container">
+          <img src="assets/organizations.jfif" alt="Student Organizations at Mercado College">
+        </div>
+      </div>
+    </div>
+
+
+    <!-- SECTION 2: EVENTS & ACTIVITIES (CAROUSEL SLIDER - eventsCarousel) -->
+    <div class="life-card-outer">
+      <div class="life-grid-2">
+        
+        <div>
+          <div class="card-title-group">
+            <div class="icon-badge"><i class="fa-solid fa-calendar-days"></i></div>
+            <h2 class="life-card-title">Events & Activities</h2>
+          </div>
+          <p style="color: #475569; font-size: 1.02rem; line-height: 1.7; font-family: 'Source Serif Pro', Georgia, serif; margin: 0;">
+            Experience a dynamic school year filled with exciting events! From annual campus showdowns and pageants to special awareness programs and student-led celebrations.
+          </p>
+        </div>
+
+        <!-- Interactive Image Slider -->
+        <div class="carousel-container" id="eventsCarousel">
+          
+          <!-- Slide 1 -->
+          <div class="carousel-slide active">
+            <img src="assets/event1.jfif" alt="Danziklaban">
+            <div class="carousel-caption">DANZIKLABAN</div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="carousel-slide">
+            <img src="assets/event2.jfif" alt="Mr and Ms Mercado College">
+            <div class="carousel-caption">MR AND MS MERCADO COLLEGE</div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="carousel-slide">
+            <img src="assets/event3.jfif" alt="Tugsayawit">
+            <div class="carousel-caption">TUGSAYAWIT</div>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="carousel-slide">
+            <img src="assets/event4.jfif" alt="Suicide Prevention Day">
+            <div class="carousel-caption">SUICIDE PREVENTION DAY</div>
+          </div>
+
+          <!-- Navigation Buttons -->
+          <button class="carousel-btn prev-btn" onclick="moveSlide('eventsCarousel', -1)"><i class="fa-solid fa-chevron-left"></i></button>
+          <button class="carousel-btn next-btn" onclick="moveSlide('eventsCarousel', 1)"><i class="fa-solid fa-chevron-right"></i></button>
+
+          <!-- Indicator Dots -->
+          <div class="carousel-dots">
+            <span class="dot active" onclick="setSlide('eventsCarousel', 0)"></span>
+            <span class="dot" onclick="setSlide('eventsCarousel', 1)"></span>
+            <span class="dot" onclick="setSlide('eventsCarousel', 2)"></span>
+            <span class="dot" onclick="setSlide('eventsCarousel', 3)"></span>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- SECTION 3: STUDENT SERVICES & FACILITIES (CAROUSEL SLIDER - facilitiesCarousel) -->
+    <div class="life-card-outer">
+      <div class="life-grid-2">
+        <div>
+          <div class="card-title-group">
+            <div class="icon-badge"><i class="fa-solid fa-building-columns"></i></div>
+            <h2 class="life-card-title">Student Services & Facilities</h2>
+          </div>
+          <p style="color: #475569; font-size: 1.02rem; line-height: 1.7; font-family: 'Source Serif Pro', Georgia, serif; margin: 0;">
+            Our campus is equipped with modern computer laboratories, fully stocked libraries, guidance offices, and health clinics operated in coordination with Daniel Mercado Medical Center (DMMC) to ensure the safety and well-being of every student.
+          </p>
+        </div>
+
+        <!-- Interactive Image Slider for Facilities -->
+        <div class="carousel-container" id="facilitiesCarousel">
+          
+          <!-- Slide 1 -->
+          <div class="carousel-slide active">
+            <img src="assets/fac1.jpg" alt="Facility 1" loading="eager" fetchpriority="high">
+            <div class="carousel-caption">CAMPUS FACILITY</div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="carousel-slide">
+            <img src="assets/fac2.jpg" alt="Facility 2" loading="lazy">
+            <div class="carousel-caption">CAMPUS FACILITY</div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="carousel-slide">
+            <img src="assets/fac3.jpg" alt="Facility 3" loading="lazy">
+            <div class="carousel-caption">CAMPUS FACILITY</div>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="carousel-slide">
+            <img src="assets/fac4.jpg" alt="Facility 4" loading="lazy">
+            <div class="carousel-caption">CAMPUS FACILITY</div>
+          </div>
+
+          <!-- Slide 5 -->
+          <div class="carousel-slide">
+            <img src="assets/fac5.jpg" alt="Facility 5" loading="lazy">
+            <div class="carousel-caption">CAMPUS FACILITY</div>
+          </div>
+
+          <!-- Slide 6 -->
+          <div class="carousel-slide">
+            <img src="assets/fac6.jpg" alt="Facility 6" loading="lazy">
+            <div class="carousel-caption">CAMPUS FACILITY</div>
+          </div>
+
+          <!-- Slide 7 -->
+          <div class="carousel-slide">
+            <img src="assets/fac7.jpg" alt="Facility 7" loading="lazy">
+            <div class="carousel-caption">CAMPUS FACILITY</div>
+          </div>
+
+          <!-- Slide 8 -->
+          <div class="carousel-slide">
+            <img src="assets/fac8.jpg" alt="Facility 8" loading="lazy">
+            <div class="carousel-caption">CAMPUS FACILITY</div>
+          </div>
+
+          <!-- Navigation Buttons -->
+          <button class="carousel-btn prev-btn" onclick="moveSlide('facilitiesCarousel', -1)"><i class="fa-solid fa-chevron-left"></i></button>
+          <button class="carousel-btn next-btn" onclick="moveSlide('facilitiesCarousel', 1)"><i class="fa-solid fa-chevron-right"></i></button>
+
+          <!-- Indicator Dots -->
+          <div class="carousel-dots">
+            <span class="dot active" onclick="setSlide('facilitiesCarousel', 0)"></span>
+            <span class="dot" onclick="setSlide('facilitiesCarousel', 1)"></span>
+            <span class="dot" onclick="setSlide('facilitiesCarousel', 2)"></span>
+            <span class="dot" onclick="setSlide('facilitiesCarousel', 3)"></span>
+            <span class="dot" onclick="setSlide('facilitiesCarousel', 4)"></span>
+            <span class="dot" onclick="setSlide('facilitiesCarousel', 5)"></span>
+            <span class="dot" onclick="setSlide('facilitiesCarousel', 6)"></span>
+            <span class="dot" onclick="setSlide('facilitiesCarousel', 7)"></span>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+
+  <!-- JavaScript para sa Multiple Independent Carousels -->
+  <script>
+    const carouselIndexes = {
+      eventsCarousel: 0,
+      facilitiesCarousel: 0
+    };
+
+    const autoSlideIntervals = {};
+
+    function showSlide(carouselId, index) {
+      const container = document.getElementById(carouselId);
+      if (!container) return;
+
+      const slides = container.querySelectorAll('.carousel-slide');
+      const dots = container.querySelectorAll('.dot');
+
+      if (index >= slides.length) {
+        carouselIndexes[carouselId] = 0;
+      } else if (index < 0) {
+        carouselIndexes[carouselId] = slides.length - 1;
+      } else {
+        carouselIndexes[carouselId] = index;
+      }
+
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        if (i === carouselIndexes[carouselId]) {
+          slide.classList.add('active');
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        dot.classList.remove('active');
+        if (i === carouselIndexes[carouselId]) {
+          dot.classList.add('active');
+        }
+      });
+    }
+
+    function moveSlide(carouselId, step) {
+      showSlide(carouselId, carouselIndexes[carouselId] + step);
+      resetAutoSlide(carouselId);
+    }
+
+    function setSlide(carouselId, index) {
+      showSlide(carouselId, index);
+      resetAutoSlide(carouselId);
+    }
+
+    function startAutoSlide(carouselId) {
+      autoSlideIntervals[carouselId] = setInterval(() => {
+        showSlide(carouselId, carouselIndexes[carouselId] + 1);
+      }, 4500);
+    }
+
+    function resetAutoSlide(carouselId) {
+      clearInterval(autoSlideIntervals[carouselId]);
+      startAutoSlide(carouselId);
+    }
+
+    // Initialize parehong carousels
+    startAutoSlide('eventsCarousel');
+    startAutoSlide('facilitiesCarousel');
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const btn = document.getElementById("backToTopBtn");
+
+      if (btn) {
+        window.addEventListener("scroll", function () {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+          
+          if (scrollTop > 200) {
+            btn.style.setProperty("display", "flex", "important");
+          } else {
+            btn.style.setProperty("display", "none", "important");
+          }
+        });
+
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+        });
+      }
+    });
+  </script>
+
+
+  <!-- Footer -->
+  <footer style="background-color: #1A2F50; color: #ffffff; padding: 50px 40px 20px; font-family: 'Source Serif Pro', Georgia, serif; border-top-left-radius: 30px; border-top-right-radius: 30px; margin-top: 40px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; padding-bottom: 40px; text-align: left;">
+      
+      <!-- Column 1 -->
+      <div style="flex: 1; min-width: 250px;">
+        <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 20px; text-align: left;">Get In Touch</h3>
+        <p style="font-size: 0.9rem; margin-bottom: 10px; line-height: 1.5; color: #E0E0E0;">143 Narra St., Mountview Subd., Brgy. 3, Tanauan City, Batangas</p>
+        <p style="font-size: 0.9rem; margin-bottom: 8px; color: #E0E0E0;">(043) 778 6352</p>
+        <p style="font-size: 0.9rem; margin-bottom: 8px; color: #E0E0E0;">(043) 430 5053</p>
+        <p style="font-size: 0.9rem; margin-bottom: 8px; color: #E0E0E0;">+63 917 140 4751</p>
+        <p style="font-size: 0.9rem; margin-bottom: 8px; color: #E0E0E0;">marketing@mercadocollege.edu.ph</p>
+        <p style="font-size: 0.9rem; margin-bottom: 0; color: #E0E0E0;">registrar@mercadocollege.edu.ph</p>
+      </div>
+
+      <!-- Column 2 -->
+      <div style="flex: 1; min-width: 200px; display: flex; flex-direction: column; align-items: flex-start;">
+        <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; margin-top: 0; text-align: left;">Quick Links</h3>
+        <ul style="list-style: none; padding: 0; margin: 0 0 25px 0; text-align: left;">
+          <li style="margin-bottom: 10px;"><a href="#" style="color: #E0E0E0; text-decoration: none; font-size: 0.95rem;">Careers</a></li>
+          <li style="margin-bottom: 10px;"><a href="#" style="color: #E0E0E0; text-decoration: none; font-size: 0.95rem;">Student Portal</a></li>
+        </ul>
+
+        <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; margin-top: 0; text-align: left;">Follow Us</h3>
+        <div style="display: flex; gap: 15px; font-size: 1.3rem; justify-content: flex-start; align-items: center;">
+          <a href="https://www.facebook.com/dmmc.ihs" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none;"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" style="color: #ffffff; text-decoration: none;"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.tiktok.com/@mercadocollege" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none;"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+
+      <!-- Column 3: Tagline -->
+      <div style="flex: 1.2; min-width: 280px; display: flex; align-items: center; justify-content: flex-end;">
+        <h2 style="font-size: 2.2rem; font-weight: 800; font-family: 'Source Serif Pro', Georgia, serif; line-height: 1.25; margin: 0; text-align: left; color: #ffffff;">
+          Locally Relevant.<br>
+          Globally Recognized.
+        </h2>
+      </div>
+
+    </div>
+
+    <div style="max-width: 1200px; margin: 0 auto; text-align: left; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.85rem; color: #B0C4DE;">
+      © Copyright 2026 Mercado College, All Rights Reserved.
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTopBtn" 
+          aria-label="Back to top" 
+          title="Bumalik sa taas"
+          style="display: none; position: fixed !important; bottom: 30px !important; right: 30px !important; z-index: 99999 !important; width: 50px !important; height: 50px !important; background-color: #FFB800 !important; color: #1A2F50 !important; border: none !important; border-radius: 50% !important; font-size: 22px !important; font-weight: bold !important; cursor: pointer !important; align-items: center !important; justify-content: center !important; box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;">
+    ▲
+  </button>
+</body>
+</html>

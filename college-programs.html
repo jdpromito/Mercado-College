@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Degree Programs - Mercado College</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Source Serif Pro', Georgia, serif !important;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #333333;
+    }
+
+    /* SOLID DARK NAVY BLUE HEADER BAR (MOBILE & DESKTOP COMPATIBLE) */
+    .top-header {
+      background-color: #11223f !important;
+      color: #ffffff;
+      padding: 16px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      gap: 15px;
+    }
+
+    .contact-info {
+      font-size: 0.85rem;
+      color: #e5e7eb !important;
+      letter-spacing: 0.5px;
+      font-weight: 500;
+      text-align: left;
+    }
+
+    .contact-info span {
+      color: #facc15;
+    }
+
+    .back-btn-header {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: rgba(255, 255, 255, 0.12);
+      color: #ffffff !important;
+      text-decoration: none !important;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .back-btn-header:hover {
+      background-color: #FFB800 !important;
+      color: #0A192F !important;
+      border-color: #FFB800 !important;
+    }
+
+    /* MAIN CONTAINER (FLEXBOX PARA SA STICKY SIDEBAR) */
+    .program-details-container {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 40px;
+      display: flex;
+      gap: 50px;
+      align-items: flex-start; /* NAPAKA-IMPORTANTE: Kailangan para gumana ang sticky */
+      position: relative;
+    }
+
+    /* LEFT CONTENT AREA */
+    .left-text-area {
+      flex: 1.1;
+    }
+
+    .program-title {
+      color: #11223f;
+      font-size: 2.8rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 35px;
+      letter-spacing: -0.5px;
+    }
+
+    .program-description p {
+      color: #4b5563;
+      font-size: 0.93rem;
+      line-height: 1.65;
+      text-align: justify;
+      margin-bottom: 22px;
+    }
+
+    .program-description h3 {
+      color: #11223f;
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin: 25px 0 12px 0;
+    }
+
+    .program-description ul {
+      margin-left: 20px;
+      margin-bottom: 20px;
+      color: #4b5563;
+      font-size: 0.93rem;
+      line-height: 1.6;
+    }
+
+    .program-description ul li {
+      margin-bottom: 6px;
+    }
+
+    /* RIGHT IMAGE AREA WITH STICKY EFFECT */
+    .right-image-area {
+      flex: 0.9;
+      position: -webkit-sticky; /* Para sa Safari */
+      position: sticky;         /* HETONG GUMAGAWA NG STICKY EFFECT */
+      top: 40px;                /* Distansya mula sa itaas ng screen habang nag-i-scroll */
+      align-self: flex-start;
+    }
+
+    .image-frame {
+      width: 100%;
+      max-width: 450px;
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      background-color: #f3f4f6;
+    }
+
+    .image-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* RESPONSIVE DESIGN PARA SA MOBILE DEVICES */
+    @media (max-width: 768px) {
+      .top-header {
+        padding: 12px 18px;
+        gap: 10px;
+      }
+
+      .contact-info {
+        font-size: 0.75rem; /* Bawasan nang kaunti ang font size sa mobile para hindi mag-wrap nang masagwa */
+        line-height: 1.3;
+      }
+
+      .back-btn-header {
+        padding: 5px 10px;
+        font-size: 0.75rem;
+      }
+
+      .program-details-container {
+        flex-direction: column-reverse; /* Inilalagay ang image sa itaas kapag maliit ang screen */
+        padding: 0 20px;
+        margin: 20px auto;
+        gap: 25px;
+      }
+
+      .program-title {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+      }
+
+      .right-image-area {
+        width: 100%;
+        position: static; /* Tinatanggal ang sticky sa mobile para hindi masikip */
+        margin-bottom: 10px;
+      }
+      
+      .image-frame {
+        max-width: 100%;
+        border-radius: 20px;
+      }
+      
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP HEADER BAR -->
+  <header class="top-header">
+    <div class="contact-info">
+      (043) 778 6352 &nbsp;<span>|</span>&nbsp; marketing@mercadocollege.edu.ph
+    </div>
+    
+    <a href="academics.html" class="back-btn-header">
+      <span class="arrow">&larr;</span> Back 
+    </a>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="program-details-container">
+    <div class="left-text-area">
+      <h1 class="program-title" id="display-title">Bachelor of Science in Nursing</h1>
+      <div class="program-description" id="display-desc">
+        <!-- Dynamically injected via JavaScript -->
+      </div>
+    </div>
+
+    <div class="right-image-area">
+      <div class="image-frame">
+        <img id="display-img" src="assets/nursing.jpg" alt="Program Image">
+      </div>
+    </div>
+  </main>
+
+  <!-- JAVASCRIPT FOR DYNAMIC DATA LOADING -->
+  <script>
+    const programsData = {
+      "#nursing": {
+        title: "Bachelor of Science in Nursing",
+        img: "assets/bsn.png",
+        desc: `
+          <p>The College of Nursing of Mercado College lives up to its vision of producing qualified and competent nursing graduates by exposing them to various intensive clinical practices beginning in the First Year Level. These exposures include training in general wards, specialty wards, emergency departments, intensive care units, pediatrics unit, labor and delivery (DR), and operating room.</p>
+          <p>The College of Nursing features a state-of-the-art Nursing Skills Laboratory, where basics and competencies are learned prior to clinical exposure. This includes a simulation mini hospital fully equipped with all the tools and preparations students need. Students are closely monitored by competent and qualified clinical instructors and faculty to enable them to acquire both basic and advanced nursing skills in accordance with the learning objectives based on CMO 15, s.2017 set forth by the Commission on Higher Education.</p>
+          <p>Clinical instructors and faculty members have completed relevant master's degrees with specialization in various fields of nursing. Their extensive professional experience allows future nursing professionals to learn from real-world expertise.</p>
+        `
+      },
+      "#midwifery": {
+        title: "Bachelor of Science in Midwifery",
+        img: "assets/bsm.png",
+        desc: `
+          <p>The College of Midwifery of Mercado College envisions its graduates to be qualified and competent professional midwives who are life-long learners, locally relevant and globally recognized, capable of executing competencies in maternal and child health. Graduates are equipped with knowledge and skills in primary health care and exhibit the core values of excellence, integrity, collaboration, commitment, and compassion.</p>
+          <p>The College of Midwifery employs a state-of-the-art Skills Laboratory, where basic and advanced competencies are learned prior to clinical exposure. This includes a simulation mini-hospital complete with all necessary equipment and preparations. Students are closely monitored by competent and qualified clinical instructors and faculty to ensure acquisition of essential midwifery skills and achievement of learning objectives based on CMO 3, s.2023 set forth by the Commission on Higher Education.</p>
+          <p>Clinical instructors and faculty members have completed relevant master's degrees with specialization in various midwifery fields. Their extensive professional experience allows future midwifery professionals to learn from real-world expertise.</p>
+        `
+      },
+      "#medtech": {
+        title: "Bachelor of Science in Medical Technology",
+        img: "assets/bsmedtech.png",
+        desc: `
+          <p>BS in Medical Technology (BSMT), also known as Bachelor of Science in Medical Laboratory Science, is a four-year degree program that equips students with knowledge and skills in laboratory tests used for the detection, diagnosis, prevention, and treatment of diseases. The program includes general education subjects (such as English and Filipino) and professional subjects (such as Clinical Chemistry and Blood Banking).</p>
+          <p>The College of Medical Technology, guided by Mercado College Mission and Vision, aims to provide a relevant curriculum and Medical Technology program to produce globally competent and service-oriented Medical Technologists.</p>
+          <h3>Be Part Of Afumet</h3>
+          <p>Join the Association of Future Medical Technologists (AFUMET), the official organization for Medical Technology students at Mercado College.</p>
+          <ul>
+            <li>Develop strong leadership and communication skills through seminars, workshops, and organization responsibilities.</li>
+            <li>Gain confidence in leading projects, events, and fellow students.</li>
+            <li>Become an active member of the Philippine Society of Medical Technology Students - South Luzon Cluster through AFUMET.</li>
+            <li>Represent Mercado College in regional meetings, conventions, and student activities.</li>
+          </ul>
+          <h3>Why BS Medtech</h3>
+          <ul>
+            <li>Renowned Medical Technology Program</li>
+            <li>Experienced and Dedicated Faculty</li>
+            <li>Strong Clinical Internship</li>
+            <li>Active Student Organization</li>
+          </ul>
+        `
+      },
+      "#pt": {
+        title: "Bachelor of Science in Physical Therapy",
+        img: "assets/bstherapist.png",
+        desc: `
+          <p>The Department of Physical Therapy, guided by MERCADO COLLEGE, is dedicated to delivering a research-based curriculum and high-quality therapeutic programs. Our mission is to cultivate globally competent and service-driven physical therapists who are prepared to advance healthcare and improve lives.</p>
+          <p>Experience how our program empowers individuals to create meaningful change. Designed for those committed to guiding recovery, advancing growth, and achieving excellence, this initiative offers a clear starting point for a journey dedicated to transforming lives.</p>
+          <h3>Areas of Specialty</h3>
+          <ul>
+            <li>Cardiovascular and Pulmonary</li>
+            <li>Fitness</li>
+            <li>Geriatric</li>
+            <li>Wound Management</li>
+            <li>Neurology</li>
+            <li>Orthopaedics</li>
+            <li>Pediatrics</li>
+            <li>Sports</li>
+          </ul>
+        `
+      },
+      "#radtech": {
+        title: "Bachelor of Science in Radiologic Technology",
+        img: "assets/bsradtech.png",
+        desc: `
+          <p>BS in Radiologic Technology (BSRadTech) is a four-year degree program designed to train students in operating medical imaging equipment such as X-rays, CT scanners, MRIs, sonogram machines, and 3D medical imaging programs. Students are also trained to perform associated clerical duties, including scheduling and maintaining paperwork for office and clinical machinery.</p>
+          <p>The College of Radiologic Technology of Mercado College, a CHED-accredited institution, aims to produce locally and globally competent Radiologic Technologists with expertise in Imaging Science.</p>
+          <p>With a BSRT degree, you can become a vital part of the healthcare team. We provide the gateway to an in-demand, high-impact, and deeply fulfilling career in medical imaging.</p>
+          <p>Learn from a diverse group of seasoned clinical practitioners and educational experts.</p>
+          <h3>Consistent above National Passing Rate since 2019</h3>
+          <p>Our graduates consistently outperform the National Average on the Radiologic Technology Licensure Examination.</p>
+          <h3>Curriculum Aligned to Industry</h3>
+          <p><strong>Industry Relevant Education:</strong> A carefully crafted curriculum that integrates the latest medical imaging standards and techniques to match healthcare readiness.</p>
+          <p><strong>Hands-on Learning:</strong> Theory Meets Practice. Robust hands-on training to compliment and reinforce theoretical foundations. Learn with actual and simulation equipment.</p>
+        `
+      },
+      "#biology": {
+        title: "Bachelor of Science in Biology",
+        img: "assets/bsbiology.png",
+        desc: `
+          <p>Bachelor of Science in Biology (BS Biology) is a four-year degree program designed to provide students with a strong foundation in the study of living organisms and life processes. The program develops scientific knowledge, laboratory skills, and critical thinking abilities needed for careers in research, healthcare, education, and related biological sciences fields.</p>
+          <h3>Subjects and Curriculum</h3>
+          <p>The BS Biology curriculum is structured into core biology disciplines and supporting science courses:</p>
+          <ul>
+            <li><strong>General Biology:</strong> Cell Biology, Genetics, Ecology, Evolutionary Biology</li>
+            <li><strong>Organismal Biology:</strong> Botany, Zoology, Microbiology</li>
+            <li><strong>Applied Biology:</strong> Biotechnology, Environmental Biology, Molecular Biology</li>
+            <li><strong>Supporting Sciences:</strong> Chemistry, Physics, Mathematics, Biostatistics</li>
+          </ul>
+          <p>The first three years of the program focus on theoretical instruction, laboratory experiments, and fieldwork activities that build scientific competence. Students are trained in proper laboratory techniques, data analysis, and research methodologies.</p>
+          <p>In the fourth year, students undertake advanced laboratory research or a thesis project under the supervision of faculty advisers. They may also participate in field studies, internships, or research presentations depending on institutional requirements.</p>
+        `
+      },
+      "#elem-ed": {
+        title: "Bachelor of Science in Elementary Education",
+        img: "assets/bselem.png",
+        desc: `
+          <p>Bachelor of Science in Elementary Education (BEEd) is a four-year degree program designed to prepare students to become professional elementary school teachers. The program provides a strong foundation in general education, pedagogy, and child development to equip future educators with the knowledge and skills needed to teach young learners in primary education.</p>
+          <h3>Subjects and Curriculum</h3>
+          <p>The BEEd curriculum includes Professional Education subjects and General Education courses that are grouped into key areas of learning:</p>
+          <ul>
+            <li><strong>Child Development and Learning:</strong> Understanding Child and Adolescent Learners, Developmental Psychology</li>
+            <li><strong>Teaching Methods:</strong> Principles of Teaching, Curriculum Development, Assessment of Learning</li>
+            <li><strong>Content Areas:</strong> Language Arts, Mathematics, Science, Araling Panlipunan, Music, Arts, Physical Education and Health (MAPEH)</li>
+            <li><strong>Field Study and Practice Teaching:</strong> Observation of Classes, Practice Teaching in Elementary Schools</li>
+          </ul>
+          <p>The first three years of the program focus on classroom instruction, teaching strategies, lesson planning, and supervised field observations. Students actively participate in demonstrations, group discussions, and teaching simulations. In the fourth year, students undergo full-time teaching internships in elementary schools under the supervision of licensed cooperating teachers and faculty advisers.</p>
+        `
+      },
+      "#sec-ed": {
+        title: "Bachelor of Science in Secondary Education",
+        img: "assets/bssecondary.png",
+        desc: `
+          <p>Bachelor of Secondary Education (BSEd) is a four-year degree program designed to prepare students to become high school teachers. The program combines theory and practice to equip students with the knowledge and skills necessary for teaching different learning areas such as English, Mathematics, General Science, Filipino, Social Studies, Biological Sciences, Physics, Chemistry, Music, Arts, Physical Education and Health (MAPEH), and Home Economics and Livelihood Education.</p>
+          <h3>Subjects and Curriculum</h3>
+          <p>The BSEd curriculum contains Professional Education subjects classified into four major categories:</p>
+          <ul>
+            <li><strong>Theory and Concepts:</strong> Child and Adolescent Development, Social Dimensions of Education</li>
+            <li><strong>Methods and Strategies:</strong> Principles of Teaching, Assessment of Student Learning</li>
+            <li><strong>Field Study:</strong> Practice Teaching, Field Study</li>
+            <li><strong>Elective Subjects:</strong> Teaching Multicultural Classrooms, Integrative Teaching Strategies</li>
+          </ul>
+          <p>The first three years involve classroom discussions, oral recitations, role plays, and a weekly Major's Forum where students review and communicate learning experiences, discuss current issues, and explore topics relevant to teacher education. During the fourth year, students undergo teaching internships in secondary schools under the supervision of their class adviser. Depending on their specialization, an undergraduate research paper may also be required for graduation.</p>
+        `
+      },
+      "#psychology": {
+        title: "Bachelor of Science in Psychology",
+        img: "assets/bspsychology.png",
+        desc: `
+          <p>The Bachelor of Science in Psychology (BSP) program is designed to help students observe human behavior through the scientific method, gaining insight into the human psyche. Students will acquire the knowledge, tools, and skills needed to assess and conduct empirical research on individual and group behavior through various psychological theories and concepts. The BSP degree prepares students for careers in teaching, research, counseling, human resources, and can serve as a foundation for further studies in Medicine, Guidance and Counseling, Human Resource Development, and Law.</p>
+          <h3>Skills Required to Succeed</h3>
+          <ul>
+            <li><strong>Keen interest in people:</strong> Understand the intricacies of human behavior.</li>
+            <li><strong>Interpersonal skills:</strong> Relate to all kinds of people and understand their motivations.</li>
+            <li><strong>Intrapersonal skills:</strong> Self-reflection and self-assessment to better understand others.</li>
+            <li><strong>Communication skills:</strong> Active listening and patient communication to influence behavior.</li>
+            <li><strong>Analytical skills:</strong> Use scientific methods to analyze complex human behavior.</li>
+            <li><strong>Decision-making skills:</strong> Assess evidence and make informed judgments quickly.</li>
+          </ul>
+          <p>At Mercado College, this program provides students with a solid foundation in major areas of Psychology, preparing them for advanced studies or specializations in Psychology or related professions such as education, law, business management, or medicine.</p>
+        `
+      },
+      "#ba": {
+        title: "Bachelor of Science in Business Administration",
+        img: "assets/bsad.png",
+        desc: `
+          <p>The Bachelor of Science in Business Administration program (BSBA), formerly known as BS in Commerce (BSC), is designed to produce graduates familiar with business operations and equipped with critical decision-making skills for strategic and executive work in the global business environment. The program provides understanding of marketing, finance, operations, human resources, and office management, while emphasizing leadership skills for managerial and supervisory positions.</p>
+          <ul>
+            <li><strong>Basic Business Core:</strong> Principles of Management, Human Behavior in Organization (HBO), Principles of Marketing, Accounting I, Business Communication, Basic Finance, Computer</li>
+            <li><strong>Business Education Core:</strong> Basic Microeconomics, Accounting II, Business Law (Obligation and Contract), Taxation (Income Taxation), Total Quality Management, Human Resource Management, Social Responsibility and Good Governance</li>
+            <li><strong>Professional Courses:</strong> According to the selected major</li>
+            <li><strong>Electives</strong></li>
+          </ul>
+          <h3>Skills Required to Succeed</h3>
+          <ul>
+            <li><strong>Analytical skills:</strong> Ability to analyze complex problems systematically.</li>
+            <li><strong>Interpersonal skills:</strong> Ability to relate to people, lead teams, and inspire collaboration.</li>
+            <li><strong>Decision-making skills:</strong> Make good judgments under high-pressure situations.</li>
+            <li><strong>Communication skills:</strong> Effective written and oral English communication for global business and team leadership.</li>
+            <li><strong>Mathematical skills:</strong> Understanding arithmetic and numbers for accounting, auditing, and finance.</li>
+          </ul>
+          <h3>Specializations</h3>
+          <ul>
+            <li><strong>Management Accounting:</strong> Company audits on a macro scale.</li>
+            <li><strong>Entrepreneurship:</strong> Identify and pursue startup business opportunities.</li>
+            <li><strong>Marketing:</strong> Promote and sell products or services effectively.</li>
+            <li><strong>Financial Management:</strong> Maintain monetary stability and assess financial operations.</li>
+            <li><strong>Business Management:</strong> Understand operations and leadership theories, and start own business.</li>
+            <li><strong>Economics:</strong> Allocate scarce resources and analyze economic issues.</li>
+            <li><strong>Human Resource Development Management:</strong> Manage human resources using leadership and strategic approaches.</li>
+          </ul>
+        `
+      },
+      "#other": {
+        title: "Teacher Certification Program",
+        img: "assets/otherprogram.jpg",
+        desc: `
+          <h3>Build Your Path Toward a Teaching Career</h3>
+          <p>The 18-unit Teacher Certificate Program (TCP) is designed for professionals and graduates who hold a non-education degree and want to gain the professional education units needed to pursue teacher licensure.</p>
+          <p>Through this program, participants can strengthen their foundation in education and prepare for the Licensure Examination for Teachers (LET) while building essential knowledge and skills for the teaching profession.</p>
+          <h3>Program Highlights</h3>
+          <ul>
+            <li>18 professional education units</li>
+            <li>Designed for graduates and professionals from non-education degree programs</li>
+            <li>Helps participants meet the educational requirements associated with pursuing teacher licensure</li>
+            <li>Delivered by an institution with more than 20 years of teaching experience</li>
+            <li>Located in Batangas</li>
+          </ul>
+          <h3>Who Is This Program For?</h3>
+          <p>The TCP is ideal for college graduates and working professionals who have completed a degree outside education and are looking to earn professional education units as they work toward a career in teaching.</p>
+          <p>Take the next step toward becoming a licensed teacher.</p>
+        `
+      }
+    };
+
+    programsData["#tcp"] = programsData["#other"];
+
+    function loadProgramContent() {
+      const hash = window.location.hash || '#nursing';
+      
+      if (programsData[hash]) {
+        document.getElementById('display-title').innerText = programsData[hash].title;
+        document.getElementById('display-desc').innerHTML = programsData[hash].desc;
+        document.getElementById('display-img').src = programsData[hash].img;
+      } else {
+        document.getElementById('display-title').innerText = programsData['#nursing'].title;
+        document.getElementById('display-desc').innerHTML = programsData['#nursing'].desc;
+        document.getElementById('display-img').src = programsData['#nursing'].img;
+      }
+    }
+
+    window.addEventListener('load', loadProgramContent);
+    window.addEventListener('hashchange', loadProgramContent);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic Education Program - Mercado College</title>
+  <style>
+    /* GENERAL STYLES */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Source Serif Pro', Georgia, serif !important;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #333333;
+      margin: 0; /* Tinanggal ang puting margin sa paligid ng screen */
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* TOP BAR HEADER (Sagad hanggang dulo) */
+    .top-bar {
+      background-color: #1a2f50;
+      color: #ffffff;
+      padding: 15px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .top-bar .contact-info {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    .back-btn-header {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: rgba(255, 255, 255, 0.12);
+      color: #ffffff !important;
+      text-decoration: none !important;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      transition: all 0.2s ease;
+    }
+
+    .back-btn-header:hover {
+      background-color: #FFB800 !important;
+      color: #0A192F !important;
+      border-color: #FFB800 !important;
+    }
+
+    /* MAIN CONTAINER */
+    .program-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 30px;
+      display: flex;
+      gap: 50px;
+      align-items: flex-start;
+    }
+
+    /* LEFT TEXT CONTENT */
+    .left-content {
+      flex: 1;
+    }
+
+    .main-title {
+      color: #1a2f50;
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 35px;
+    }
+
+    .section-block {
+      margin-bottom: 28px;
+    }
+
+    .section-block h3 {
+      color: #1a2f50;
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    /* PANTAY ANG KALIWA AT KANANG GILID NG PARAGRAPH */
+    .section-block p {
+      color: #444444;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      text-align: justify;
+      margin-bottom: 12px;
+    }
+
+    .section-block ol {
+      padding-left: 20px;
+      color: #444444;
+    }
+
+    .section-block ol li {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      text-align: justify;
+      margin-bottom: 15px;
+    }
+
+    .section-block ol li strong {
+      color: #1a2f50;
+    }
+
+    /* RIGHT IMAGE CONTAINER */
+    .right-image-wrapper {
+      flex: 0 0 380px;
+      position: sticky;
+      top: 20px;
+    }
+
+    .right-image-wrapper img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    @media (max-width: 900px) {
+      .program-container {
+        flex-direction: column;
+        padding: 0 20px;
+      }
+      .right-image-wrapper {
+        width: 100%;
+        flex: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP HEADER BAR -->
+  <header class="top-bar">
+    <div class="contact-info">
+      (043) 778 6352 &nbsp;|&nbsp; marketing@mercadocollege.edu.ph
+    </div>
+    <a href="academics.html" class="back-btn-header">
+      <span class="arrow">&larr;</span> Back
+    </a>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="program-container">
+
+    <!-- LEFT TEXT DETAILS -->
+    <div class="left-content">
+      <h1 class="main-title">Basic Education<br>Program</h1>
+
+      <!-- WHAT IS K TO 12 -->
+      <div class="section-block">
+        <h3>What is K to 12?</h3>
+        <p>The K to 12 Program covers Kindergarten and twelve (12) years of basic education (six years of primary education, four years of Junior High School, and two years of Senior High School [SHS]). This program provides sufficient time for mastery of concepts and skills, develops lifelong learners, and prepares graduates for tertiary education, middle-level skills development, employment, and entrepreneurship.</p>
+      </div>
+
+      <!-- GEARING UP FOR THE FUTURE -->
+      <div class="section-block">
+        <h3>Gearing Up for the Future (Senior High School)</h3>
+        <p>Senior High School is two (2) years of specialized upper secondary education where students may choose a specialization based on aptitude, interests, and school capacity. The chosen career track defines the subjects a student will take in Grades 11 and 12. Senior High School subjects fall under either the Core Curriculum or specific Tracks.</p>
+      </div>
+
+      <!-- CORE CURRICULUM -->
+      <div class="section-block">
+        <h3>Core Curriculum</h3>
+        <p>There are seven learning areas under the Core Curriculum: Languages, Literature, Communication, Mathematics, Philosophy, Natural Sciences, and Social Sciences. Current content from some General Education subjects are embedded in the SHS curriculum.</p>
+      </div>
+
+      <!-- TRACKS -->
+      <div class="section-block">
+        <h3>Tracks</h3>
+        <p>Each student in Senior High School can choose among three tracks: Academic; Technical-Vocational-Livelihood; and Sports and Arts.</p>
+        <p>The Academic Track includes four strands: Accountancy, Business and Management (ABM); Humanities and Social Sciences (HUMSS); Science, Technology, Engineering, and Mathematics (STEM); and General Academic Strand (GAS).</p>
+        <p>Students undergo immersion programs, which may include earn-while-you-learn opportunities, to provide relevant exposure and actual experience in their chosen track.</p>
+      </div>
+
+      <!-- BENEFITS -->
+      <div class="section-block">
+        <h3>Benefits of the K to 12 Basic Education Program</h3>
+        <ol>
+          <li>
+            <strong>It will produce globally competitive graduates</strong>
+            <p>The K to 12 program aligns with international standards such as the Washington Accord and the Bologna Accord, increasing graduates' global competitiveness.</p>
+          </li>
+          <li>
+            <strong>Students will learn more easily</strong>
+            <p>The curriculum is decongested and focused, allowing better comprehension of core subjects. Learners from Grade 3 and below are taught in their mother tongue.</p>
+          </li>
+          <li>
+            <strong>Students will be free to pursue their passion</strong>
+            <p>Students may choose electives and specializations aligned with their interests, nurturing their skills and talents.</p>
+          </li>
+          <li>
+            <strong>There will be savings on college tuition fees</strong>
+            <p>Grades 11 and 12 function as a tuition-free two-year college education in public schools, reducing overall college costs.</p>
+          </li>
+          <li>
+            <strong>It will reduce unemployment rate and improve the economy</strong>
+            <p>Graduates gain employable skills and entrepreneurial training, helping reduce unemployment and strengthen the economy. The K to 12 Basic Education Program aims to improve both graduate quality and the overall quality of life in the country.</p>
+          </li>
+        </ol>
+      </div>
+
+    </div>
+
+    <!-- RIGHT SIDE IMAGE FROM ASSETS -->
+    <div class="right-image-wrapper">
+      <img src="assets/basiceducation.png" alt="Basic Education Program Details">
+    </div>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admissions - Mercado College</title>
+  
+  <!-- FontAwesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  
+  <!-- Nakahiwalay na CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* Button Styles */
+    .req-pill-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 18px 45px !important;
+      text-align: center !important;
+      text-decoration: none !important;
+      font-family: Arial, sans-serif !important;
+      font-weight: 700 !important;
+      font-size: 1.15rem !important;
+      border-radius: 50px !important;
+      transition: all 0.3s ease !important;
+      box-sizing: border-box !important;
+      cursor: pointer !important;
+      
+      background-color: #0A192F !important;
+      color: #ffffff !important;
+      border: 2px solid #0A192F !important;
+      box-shadow: 0 8px 20px rgba(10, 25, 47, 0.18) !important;
+    }
+
+    .req-pill-btn:hover {
+      background-color: #1A2F50 !important;
+      color: #ffffff !important;
+      border-color: #1A2F50 !important;
+      transform: translateY(-4px) !important;
+      box-shadow: 0 14px 28px rgba(10, 25, 47, 0.3) !important;
+    }
+
+    /* Modal Popup Styles: Walang blur at tamang-tama lang ang laki */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(10, 25, 47, 0.25); /* Banayad na dilim na lang, WALANG BLUR */
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 680px; /* Mas compact at hindi masyadong malapad */
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      animation: modalFadeIn 0.25s ease;
+      position: relative;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-header {
+      background-color: #FFC72C; /* Yellow Header */
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-title {
+      color: #0A192F;
+      font-size: 1.6rem;
+      font-weight: 800;
+      font-family: serif;
+      margin: 0;
+    }
+
+    .modal-close-btn {
+      background: none;
+      border: none;
+      color: #0A192F;
+      font-size: 1.6rem;
+      font-weight: 900;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0;
+      transition: transform 0.2s ease;
+    }
+
+    .modal-close-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .modal-body {
+      padding: 18px 24px;
+      max-height: none !important;
+      overflow-y: visible !important;
+      color: #0A192F;
+      font-family: sans-serif;
+      line-height: 1.4;
+      font-size: 0.9rem; /* Sakto ang laki para malinis tingnan */
+      text-align: left;
+    }
+
+    .modal-body p {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .modal-body ul {
+      margin: 0 0 12px 0;
+      padding-left: 18px;
+    }
+
+    .modal-body li {
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    .modal-section-heading {
+      font-weight: 800;
+      margin-top: 12px;
+      margin-bottom: 6px;
+      color: #0A192F;
+    }
+    /* Lahat ng text ay magiging Source Serif Pro, pero HUWAG pakialaman ang Font Awesome icons */
+html body *:not(.fa):not([class*="fa-"]):not(.fab):not(.fas):not(.far) {
+  font-family: 'Source Serif Pro', Georgia, serif !important;
+}
+/* ==========================================================
+   MODAL SCROLL FIX PARA SA MOBILE AT DESKTOP
+   ========================================================== */
+
+/* Targetin ang mismong modal box o modal content container */
+.modal-content, 
+.modal-box,
+.transfer-students-modal {
+  max-height: 85vh !important;       /* Lilimitahan ang taas sa 85% ng screen height */
+  overflow-y: auto !important;         /* Awtomatikong maglalagay ng scrollbar kapag mahaba ang text */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling para sa iOS/Android browsers */
+}
+
+/* Para sa mobile view (screen 768px pababa) */
+@media (max-width: 768px) {
+  .modal-content, 
+  .modal-box,
+  .transfer-students-modal {
+    width: 92% !important;             /* Mas magandang lapad sa mobile screen */
+    max-height: 80vh !important;       /* Mas sakto sa maliit na screen para hindi matakpan ang close button */
+    margin: 10px auto !important;
+  }
+}
+/* Kung naka-structure ang modal mo bilang header + body */
+.modal-body {
+  max-height: 65vh !important;
+  overflow-y: auto !important;
+  padding-right: 10px; /* Space para sa scrollbar */
+}
+  </style>
+</head>
+<body>
+
+  <!-- Header / Navigation (Kapareho ng About Page) -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo-container">
+        <img src="assets/logoto.png" alt="Mercado College Logo" class="site-logo" style="height: 50px; width: auto;">
+        <div class="logo-text">
+          <h1>Mercado College</h1>
+          <p>EXCELLENCE & INTEGRITY</p>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="academics.html">Academics</a></li>
+        <li><a href="admissions.html" class="active">Admissions</a></li> <!-- Active indicator -->
+        <li><a href="student-life.html">Student Life</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+
+  <!-- SEKSYON 1: ADMISSIONS HERO BANNER (ENROLLMENT GRAPHIC) -->
+  <section style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 40px 20px 60px; box-sizing: border-box;">
+    <div style="position: relative; width: 100%; overflow: hidden; border-radius: 8px;">
+      <!-- Siguraduhing nasa 'assets/enrollment.png' o palitan ng tamang image path -->
+      <img src="assets/enrollment.png" alt="Admission is Now Ongoing - Mercado College" style="width: 100%; height: auto; display: block; object-fit: contain;">
+    </div>
+  </section>
+
+
+  <!-- SEKSYON 2: ADMISSION POLICIES SECTION -->
+  <section style="width: 100%; background-color: #ffffff; padding: 20px 20px 80px;">
+    <div style="max-width: 1000px; margin: 0 auto;">
+      
+      <!-- Outline Card with Floating Title -->
+      <div style="position: relative; border: 2px solid #0A192F; border-radius: 35px; padding: 45px 50px; background-color: #ffffff; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);">
+        
+        <!-- Floating Section Title -->
+        <h2 style="position: absolute; top: -28px; left: 40px; background-color: #ffffff; padding: 0 15px; color: #0A192F; font-size: 2.8rem; font-weight: 800; font-family: serif; margin: 0;">
+          Admission Policies
+        </h2>
+
+        <!-- Policy Content Paragraphs -->
+        <div style="color: #1E293B; font-size: 1.15rem; line-height: 1.7; font-weight: 500; font-family: sans-serif; margin-top: 10px;">
+          <p style="margin-bottom: 20px;">
+            Admission policies are anchored on the belief that only those whose qualifications indicate a strong likelihood to succeed in programs offered at Mercado College and those who can measure up to the academic standards shall be accepted.
+          </p>
+          <p style="margin: 0;">
+            The Institute on her part agrees that upon completion of the course of study prescribed and approved by the Commission on Higher Education and compliance with the rules and regulations, she shall confer upon the student the title or degree in the form of a certificate or diploma.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SEKSYON 3: REQUIREMENTS SECTION -->
+  <section style="width: 100%; background-color: #ffffff; padding: 20px 20px 100px; text-align: center;">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      
+      <!-- Section Title -->
+      <h2 style="color: #0A192F; font-size: 3.2rem; font-weight: 800; font-family: serif; margin-top: 0; margin-bottom: 45px;">
+        Requirements
+      </h2>
+
+      <!-- Requirements Buttons Row (Gamit ang buttons para sa modal triggers) -->
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px 25px; max-width: 950px; margin: 0 auto;">
+        
+        <button class="req-pill-btn" onclick="openModal('generalModal')">General Admission</button>
+        <button class="req-pill-btn" onclick="openModal('transferModal')">Transfer Students</button>
+        <button class="req-pill-btn" onclick="openModal('loaModal')">Leave of Absence</button>
+        <button class="req-pill-btn" onclick="openModal('readmitModal')">Re-Admission</button>
+        <button class="req-pill-btn" onclick="openModal('crossModal')">Cross-Enrollment</button>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= MODAL POPUPS ================= -->
+
+  <!-- 1. General Admission Modal -->
+  <div id="generalModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title">General Admission</h2>
+        <button class="modal-close-btn" onclick="closeModal('generalModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-weight: 700;">The applicants must:</p>
+        <ul>
+          <li>Be a graduate of a duly recognized academic high school.</li>
+          <li>Be of good moral character.</li>
+          <li>Satisfactorily pass the entrance examination and interview.</li>
+          <li>Be physically and mentally fit. Applicants shall undergo a physical examination at Daniel Mercado Medical Center (DMMC) Industrial Clinic.</li>
+        </ul>
+        <div class="modal-section-heading">Required Documents</div>
+        <ul>
+          <li>Form 138 (High School Report Card) or Form 137</li>
+          <li>Certificate of Good Moral Character duly signed by the Guidance Counselor or Principal</li>
+          <li>Birth Certificate (NSO Certified) - Original Copy</li>
+          <li>Marriage Certificate (for married female applicants only)</li>
+          <li>Recent photographs (2×2 and 1×1), three (3) copies each.</li>
+          <li>NCAE / NSAT Result</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Transfer Students Modal -->
+  <div id="transferModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title">Transfer Students</h2>
+        <button class="modal-close-btn" onclick="closeModal('transferModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>As a general rule, transfer students are not admitted except for meritorious reasons. Admission is subject to the evaluation and approval of the Registrar in coordination with the College Dean, based on the applicant's academic credentials and qualifications. Transfer applicants are required to follow the admission procedures prescribed by the Admissions Committee.</p>
+        <p>First and Second Year transferees must pass the Mercado College Entrance Examination. Third and Fourth Year transferees must pass the Qualifying Examination and Interview conducted by the College Dean. Additional aptitude examinations may also be required depending on the program, such as the Nursing Aptitude Test (NAT), Philippine Aptitude Test for Teachers (PATT), or Allied Medical College Aptitude Test (AMCAT).</p>
+        <p>Transfer students are required to repeat major clinical subjects taken from their previous institution. In exceptional cases, the College Dean may authorize validating examinations for students with exemplary academic performance.</p>
+        <p>Applicants must have passing marks in at least sixty percent (60%) of the total units earned in their previous school. Furthermore, a minimum residency of one (1) academic year at Mercado College is required before graduation.</p>
+        <div class="modal-section-heading">Required Documents</div>
+        <ul>
+          <li>Transfer Credential (Honorable Dismissal)</li>
+          <li>True Copy of Grades</li>
+          <li>Certificate of Good Moral Character</li>
+          <li>Birth Certificate</li>
+          <li>ID Pictures (1×1 and 2×2), three (3) copies each.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Leave of Absence Modal -->
+  <div id="loaModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title">Leave of Absence</h2>
+        <button class="modal-close-btn" onclick="closeModal('loaModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>The maximum allowable Leave of Absence (LOA) for a student enrolled at Mercado College is one (1) academic year.</p>
+        <p>To apply for LOA, students must accomplish the LOA Form at the Dean's Office and secure the approval of the College Dean through signature.</p>
+        <p>Once approved, the accomplished form must be submitted to the Registrar for proper recording and processing.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Re-Admission Modal -->
+  <div id="readmitModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title">Re-Admission</h2>
+        <button class="modal-close-btn" onclick="closeModal('readmitModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>No student shall be re-admitted if he/she did not file LOA or failed to secure the approval of the College Dean.</p>
+        <div class="modal-section-heading">Procedure for Re-Admission:</div>
+        <ul>
+          <li>Prepare a letter-request for re-admission addressed to the College Dean and secure approval.</li>
+          <li>Once re-admitted, the student shall undergo a re-orientation as prescribed by the Admissions Committee and a physical examination at the Daniel Mercado Medical Center – Industrial Clinic.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Cross-Enrollment Modal -->
+  <div id="crossModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title">Cross-Enrollment</h2>
+        <button class="modal-close-btn" onclick="closeModal('crossModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>In general, cross-enrollment is discouraged. However, for valid reasons, a student may be permitted to cross-enroll in another school upon the written approval of the Registrar.</p>
+        <p>Conditions for Cross-Enrollment include being a graduating student, having subject schedule conflicts, taking off-semester subjects, and enrolling only in a duly recognized educational institution.</p>
+        <div class="modal-section-heading">Cross-Enrollment Procedure:</div>
+        <ul>
+          <li>Secure and accomplish three (3) copies of the Cross-Enrollment Form provided by the Registrar's Office to be approved by the College Dean;</li>
+          <li>Proceed to the Registrar for endorsement;</li>
+          <li>Submit a duplicate copy of the accomplished form to the Registrar's Office;</li>
+          <li>Present the cross-enrollment form to the host institution; and</li>
+          <li>Secure clearance and official grades from the host institution and submit them to Mercado College at the end of the semester or term.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- JavaScript para sa Modal Functionality -->
+  <script>
+    function openModal(modalId) {
+      document.getElementById(modalId).style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // I-lock ang background scroll habang nakabukas ang popup
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
+      document.body.style.overflow = 'auto'; // Ibalik ang scroll kapag naisara na
+    }
+
+    // Isara ang modal kapag clinick sa labas ng puting card
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal-overlay')) {
+        event.target.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+    const btn = document.getElementById("backToTopBtn");
+
+    if (btn) {
+      window.addEventListener("scroll", function () {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        
+        if (scrollTop > 200) {
+          btn.style.setProperty("display", "flex", "important");
+        } else {
+          btn.style.setProperty("display", "none", "important");
+        }
+      });
+
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      });
+    }
+  });
+  </script>
+
+
+  <!-- FOOTER (Eksaktong kapareho ng sa About Page) -->
+  <footer style="background-color: #1A2F50; color: #ffffff; padding: 50px 40px 20px; font-family: sans-serif; border-top-left-radius: 30px; border-top-right-radius: 30px; margin-top: 40px;">
+  
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; padding-bottom: 40px; text-align: left;">
+      
+      <!-- Column 1: Get In Touch -->
+      <div style="flex: 1; min-width: 250px;">
+        <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 20px; text-align: left;">Get In Touch</h3>
+        <p style="font-size: 0.9rem; margin-bottom: 10px; line-height: 1.5; color: #E0E0E0;">
+          143 Narra St., Mountview Subd., Brgy. 3, Tanauan City, Batangas
+        </p>
+        <p style="font-size: 0.9rem; margin-bottom: 8px; color: #E0E0E0;">(043) 778 6352</p>
+        <p style="font-size: 0.9rem; margin-bottom: 8px; color: #E0E0E0;">(043) 430 5053</p>
+        <p style="font-size: 0.9rem; margin-bottom: 8px; color: #E0E0E0;">+63 917 140 4751</p>
+        <p style="font-size: 0.9rem; margin-bottom: 8px; color: #E0E0E0;">marketing@mercadocollege.edu.ph</p>
+        <p style="font-size: 0.9rem; margin-bottom: 0; color: #E0E0E0;">registrar@mercadocollege.edu.ph</p>
+      </div>
+
+      <!-- Column 2: Quick Links & Follow Us -->
+      <div style="flex: 1; min-width: 200px; display: flex; flex-direction: column; align-items: flex-start;">
+        <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; margin-top: 0; text-align: left;">Quick Links</h3>
+        <ul style="list-style: none; padding: 0; margin: 0 0 25px 0; text-align: left;">
+          <li style="margin-bottom: 10px;">
+            <a href="#" style="color: #E0E0E0; text-decoration: none; font-size: 0.95rem;">Careers</a>
+          </li>
+          <li style="margin-bottom: 10px;">
+            <a href="#" style="color: #E0E0E0; text-decoration: none; font-size: 0.95rem;">Student Portal</a>
+          </li>
+        </ul>
+
+        <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; margin-top: 0; text-align: left;">Follow Us</h3>
+        
+        <!-- Social Media Icons -->
+        <div style="display: flex; gap: 15px; font-size: 1.3rem; justify-content: flex-start; align-items: center;">
+          <!-- Facebook Link -->
+          <a href="https://www.facebook.com/dmmc.ihs?rdid=0Ju1ljysI4AkcZ7U&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1C8GkB7cvr%2F#" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none;">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          
+          <!-- Instagram Link -->
+          <a href="#" style="color: #ffffff; text-decoration: none;">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          
+          <!-- TikTok Link -->
+          <a href="https://www.tiktok.com/@mercadocollege" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none;">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 3: Tagline (Naka-align sa Kaliwa ang Text para Pantay ang 'Locally' at 'Globally') -->
+<div style="flex: 1.2; min-width: 280px; display: flex; align-items: center; justify-content: flex-end;">
+  <h2 style="font-size: 2.2rem; font-weight: 800; font-family: 'Source Serif Pro', Georgia, serif; line-height: 1.25; margin: 0; text-align: left; color: #ffffff;">
+    Locally Relevant.<br>
+    Globally Recognized.
+  </h2>
+</div>
+
+    </div>
+
+    <!-- Bottom Copyright Bar -->
+    <div style="max-width: 1200px; margin: 0 auto; text-align: left; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.85rem; color: #B0C4DE;">
+      © Copyright 2026 Mercado College, All Rights Reserved.
+    </div>
+
+  </footer>
+<!-- Back to Top Button -->
+<button id="backToTopBtn" 
+        aria-label="Back to top" 
+        title="Bumalik sa taas"
+        style="display: none; position: fixed !important; bottom: 30px !important; right: 30px !important; z-index: 99999 !important; width: 50px !important; height: 50px !important; background-color: #FFB800 !important; color: #1A2F50 !important; border: none !important; border-radius: 50% !important; font-size: 22px !important; font-weight: bold !important; cursor: pointer !important; align-items: center !important; justify-content: center !important; box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;">
+  ▲
+</button>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TESDA Programs - Mercado College</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Source Serif Pro', Georgia, serif;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #333333;
+    }
+
+    /* SOLID DARK NAVY BLUE HEADER BAR */
+    .top-header {
+      background-color: #11223f !important;
+      color: #ffffff;
+      padding: 16px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    /* LOGO SECTION */
+    .header-logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-logo {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      filter: brightness(0) invert(1); 
+    }
+
+    .brand-name {
+      color: #ffffff !important;
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* CONTACT INFO & BACK BUTTON */
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    .contact-info {
+      font-size: 0.85rem;
+      color: #e5e7eb !important;
+      letter-spacing: 0.5px;
+      font-weight: 500;
+    }
+
+    .contact-info span {
+      color: #facc15;
+    }
+
+    .back-btn-header {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: rgba(255, 255, 255, 0.12);
+      color: #ffffff !important;
+      text-decoration: none !important;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      transition: all 0.2s ease;
+    }
+
+    .back-btn-header:hover {
+      background-color: #FFB800 !important;
+      color: #0A192F !important;
+      border-color: #FFB800 !important;
+    }
+
+    /* MAIN CONTAINER (WITH STICKY SIDEBAR) */
+    .program-details-container {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 40px;
+      display: flex;
+      gap: 50px;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    /* LEFT CONTENT AREA */
+    .left-text-area {
+      flex: 1.1;
+    }
+
+    .program-title {
+      color: #11223f;
+      font-size: 2.8rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 35px;
+      letter-spacing: -0.5px;
+    }
+
+    .program-description p {
+      color: #4b5563;
+      font-size: 0.93rem;
+      line-height: 1.65;
+      text-align: justify;
+      margin-bottom: 22px;
+    }
+
+    .program-description h3 {
+      color: #11223f;
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin: 25px 0 12px 0;
+    }
+
+    .program-description ul {
+      margin-left: 20px;
+      margin-bottom: 20px;
+      color: #4b5563;
+      font-size: 0.93rem;
+      line-height: 1.6;
+    }
+
+    .program-description ul li {
+      margin-bottom: 8px;
+    }
+
+    /* RIGHT IMAGE AREA WITH STICKY EFFECT */
+    .right-image-area {
+      flex: 0.9;
+      position: -webkit-sticky;
+      position: sticky;
+      top: 40px;
+      align-self: flex-start;
+    }
+
+    .image-frame {
+      width: 100%;
+      max-width: 450px;
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      background-color: #f3f4f6;
+    }
+
+    .image-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* RESPONSIVE DESIGN FOR MOBILE */
+    @media (max-width: 900px) {
+      .program-details-container {
+        flex-direction: column-reverse;
+        padding: 0 25px;
+        margin: 30px auto;
+      }
+
+      .program-title {
+        font-size: 2.2rem;
+      }
+
+      .right-image-area {
+        width: 100%;
+        position: static;
+        margin-bottom: 20px;
+      }
+
+      .image-frame {
+        max-width: 100%;
+      }
+      
+    }
+    
+  </style>
+</head>
+<body>
+
+ <!-- TOP HEADER BAR -->
+  <header class="top-header">
+    <div class="contact-info">
+      (043) 778 6352 &nbsp;<span>|</span>&nbsp; marketing@mercadocollege.edu.ph
+    </div>
+    
+    <a href="academics.html" class="back-btn-header">
+      <span class="arrow">&larr;</span> Back 
+    </a>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="program-details-container">
+    <div class="left-text-area">
+      <h1 class="program-title" id="display-title">Caregiving NCII</h1>
+      <div class="program-description" id="display-desc">
+        <!-- Dynamically injected via JavaScript -->
+      </div>
+    </div>
+
+    <div class="right-image-area">
+      <div class="image-frame">
+        <img id="display-img" src="assets/caregiving.jpg" alt="TESDA Program Image">
+      </div>
+    </div>
+  </main>
+
+  <!-- JAVASCRIPT FOR DYNAMIC DATA LOADING -->
+ <script>
+  const tesdaData = {
+    "caregiving": {
+      title: "Caregiving NCII",
+      img: "assets/caregiving.png",
+      desc: `
+        <p>Caregiving NC II is a technical-vocational program designed to equip students with the knowledge, skills, and attitude required to provide quality care for infants, children, elderly persons, and individuals with special needs. The program focuses on personal care, health maintenance, and basic medical assistance in both home and institutional settings.</p>
+        
+        <h3>Subjects and Curriculum</h3>
+        <p>The Caregiving NC II curriculum is competency-based and aligned with TESDA standards:</p>
+        <ul>
+          <li><strong>Core Caregiving Skills:</strong> Personal Hygiene Care, Mobility Assistance, Vital Signs Monitoring</li>
+          <li><strong>Health Care Procedures:</strong> Basic First Aid, Infection Control, Medication Assistance</li>
+          <li><strong>Maternal and Child Care:</strong> Infant Care, Child Development Support, Nutrition and Feeding</li>
+          <li><strong>Elderly and Special Needs Care:</strong> Elderly Care Support, Disability Assistance, Home Care Management</li>
+        </ul>
+
+        <p>The program emphasizes hands-on training through simulations, laboratory activities, and supervised practical experiences. Students are trained to perform caregiving tasks safely, compassionately, and in accordance with health and safety standards.</p>
+        <p>Upon completion, students undergo competency assessment leading to a TESDA National Certificate (NC II), which qualifies them for employment in hospitals, nursing homes, home care services, and other caregiving institutions locally and abroad.</p>
+      `
+    },
+"biomedical": {
+  title: "Biomedical Equipment Servicing NCII",
+  img: "assets/biomed.png",
+  desc: `
+    <p>The Mercado College Biomedical Equipment Technology Department offers a program that produces locally relevant and globally recognized competent Biomedical Equipment Technologists capable of responding to the growing needs of health institutions worldwide.</p>
+
+    <h3>Program Objectives</h3>
+    <p>The program is designed to achieve the following objectives:</p>
+    <ol>
+      <li>To develop relevant programs of technical knowledge and skills balanced with on-the-job training in local health institutions.</li>
+      <li>To develop biomedical equipment technicians equipped with competence in quality maintenance and repair of biomedical equipment in both local and global health institutions.</li>
+      <li>To create and continuously enhance faculty and staff development programs geared toward professional growth and delivery of quality instructional services.</li>
+    </ol>
+
+    <h3>Key Focus Areas</h3>
+    <p>Students are trained in technical competencies aligned with TESDA standards and healthcare equipment support:</p>
+    <ul>
+      <li><strong>Equipment Maintenance & Repair:</strong> Preventive maintenance, diagnostics, and troubleshooting of biomedical equipment</li>
+      <li><strong>Safety & Quality Standards:</strong> Electrical safety checks, calibration awareness, and compliance with health institution protocols</li>
+      <li><strong>Hands-On & Practical Training:</strong> Laboratory exercises, technical simulations, and on-the-job training in healthcare settings</li>
+    </ul>
+
+    <p>Upon completion, graduates are prepared for entry-level technical roles supporting medical and diagnostic equipment in hospitals, clinics, and healthcare facilities locally and abroad.</p>
+  `
+}
+  };
+
+  function loadProgramByQuery() {
+    // Binabasa ang URL parameters (halimbawa: ?program=biomedical)
+    const urlParams = new URLSearchParams(window.location.search);
+    const programParam = urlParams.get('program');
+
+    // Pinipili kung alin ang gagamitin, default ay caregiving kapag wala o mali
+    const data = tesdaData[programParam] ? tesdaData[programParam] : tesdaData["caregiving"];
+
+    // Inilalagay ang tamang data sa HTML elements
+    document.getElementById('display-title').innerText = data.title;
+    document.getElementById('display-desc').innerHTML = data.desc;
+    document.getElementById('display-img').src = data.img;
+  }
+
+  // Patakbuhin kapag nag-load ang pahina
+  window.addEventListener('DOMContentLoaded', loadProgramByQuery);
+</script>
+
+</body>
+</html>

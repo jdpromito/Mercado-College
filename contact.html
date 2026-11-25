@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Mercado College</title>
+  
+  <!-- FontAwesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+/* ==========================================================
+   GLOBAL & BASE STYLES
+   ========================================================== */
+body {
+  background: linear-gradient(135deg, #F1F5F9 0%, #E2E8F0 100%) !important;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Universal Font Enforcement */
+html body *:not(.fa):not([class*="fa-"]):not(.fab):not(.fas):not(.far) {
+  font-family: 'Source Serif Pro', Georgia, serif !important;
+}
+
+/* Main Container / Wrapper */
+.contact-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+/* ==========================================================
+   HIGH-END OUTER CONTACT CARDS & FORMS
+   ========================================================== */
+.contact-card-outer {
+  background-color: #ffffff;
+  border-radius: 30px;
+  padding: 50px 40px;
+  margin-bottom: 40px;
+  box-shadow: 0 15px 35px rgba(10, 25, 47, 0.06);
+  border: 2px solid #0A192F;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-sizing: border-box;
+}
+
+.contact-card-outer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background-color: #0A192F;
+}
+
+.contact-card-outer:hover {
+  box-shadow: 0 20px 45px rgba(10, 25, 47, 0.12);
+  transform: translateY(-4px);
+}
+
+/* Inner Info Box Styles */
+.info-box {
+  border: 2px solid #E2E8F0;
+  border-radius: 20px;
+  padding: 22px 25px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background-color: #FAFAFB;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  text-decoration: none !important;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.info-box:hover {
+  border-color: #0A192F;
+  background-color: #ffffff;
+  box-shadow: 0 10px 25px rgba(10, 25, 47, 0.08);
+  transform: translateY(-3px);
+}
+
+.info-box-icon {
+  font-size: 2.2rem;
+  color: #0A192F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.info-box:hover .info-box-icon {
+  transform: scale(1.1);
+}
+
+.info-box-text {
+  color: #0A192F;
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  white-space: normal !important;
+  word-break: break-word !important;
+}
+
+.info-box-text a {
+  color: #0A192F;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  word-break: break-word !important;
+}
+
+.info-box-text a:hover {
+  color: #1E3A8A;
+  text-decoration: underline;
+}
+
+/* Map Section Styling */
+.map-frame-wrapper {
+  width: 100%;
+  height: 340px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid #E2E8F0;
+  box-shadow: 0 8px 20px rgba(10, 25, 47, 0.06);
+}
+
+/* Direction Button */
+.directions-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #0A192F;
+  color: #ffffff;
+  padding: 14px 30px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(10, 25, 47, 0.15);
+}
+
+.directions-btn:hover {
+  background-color: #1E3A8A;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================
+   FOOTER LEFT-ALIGN & TAGLINE PERFECT FIX (PC & MOBILE)
+   ========================================================== */
+.site-footer {
+  background-color: #1A2F50 !important;
+  color: #ffffff !important;
+  padding: 50px 40px 20px !important;
+  font-family: 'Source Serif Pro', Georgia, serif !important;
+  border-top-left-radius: 30px !important;
+  border-top-right-radius: 30px !important;
+  margin-top: 60px !important;
+}
+
+.footer-inner {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 30px !important;
+  padding-bottom: 40px !important;
+}
+
+.footer-col {
+  flex: 1 !important;
+  text-align: left !important;
+}
+
+.footer-col h3 {
+  font-size: 1.4rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 15px !important;
+  margin-top: 0 !important;
+  color: #ffffff !important;
+}
+
+.footer-col p {
+  font-size: 0.9rem !important;
+  margin-bottom: 8px !important;
+  color: #E0E0E0 !important;
+  line-height: 1.4 !important;
+}
+
+.footer-col ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 20px 0 !important;
+}
+
+.footer-col ul li a {
+  color: #E0E0E0 !important;
+  text-decoration: none !important;
+  font-size: 0.95rem !important;
+}
+
+.social-icons {
+  display: flex !important;
+  gap: 15px !important;
+  font-size: 1.3rem !important;
+  align-items: center !important;
+}
+
+.social-icons a {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+.footer-tagline-col {
+  flex: 1.2 !important;
+  min-width: 280px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+}
+
+.tagline-line {
+  font-size: 2.1rem !important;
+  font-weight: 800 !important;
+  font-family: 'Source Serif Pro', Georgia, serif !important;
+  line-height: 1.25 !important;
+  color: #ffffff !important;
+  text-align: left !important;
+  white-space: nowrap !important;
+  margin: 0 !important;
+}
+
+.footer-bottom {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  text-align: left !important;
+  padding-top: 20px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  font-size: 0.85rem !important;
+  color: #B0C4DE !important;
+}
+
+/* ==========================================================
+   MOBILE RESPONSIVE FIXES
+   ========================================================== */
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .contact-card-outer {
+    padding: 25px 18px !important;
+    border-radius: 20px !important;
+    margin-bottom: 25px !important;
+  }
+
+  .map-frame-wrapper {
+    height: 250px !important;
+  }
+
+  .site-footer {
+    padding: 30px 20px 20px !important;
+  }
+
+  .footer-inner {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+
+  .footer-col {
+    text-align: left !important;
+    width: 100% !important;
+  }
+
+  .footer-tagline-col {
+    justify-content: flex-start !important;
+    width: 100% !important;
+    margin-top: 15px !important;
+  }
+
+  .tagline-line {
+    font-size: 1.6rem !important;
+  }
+}
+  </style>
+</head>
+<body class="contact-page">
+
+  <!-- Header / Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo-container">
+        <img src="assets/logoto.png" alt="Mercado College Logo" class="site-logo" style="height: 50px; width: auto;">
+        <div class="logo-text">
+          <h1>Mercado College</h1>
+          <p>EXCELLENCE & INTEGRITY</p>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="academics.html">Academics</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="student-life.html">Student Life</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main style="max-width: 1200px; margin: 40px auto 60px; padding: 0 20px; box-sizing: border-box;">
+
+    <!-- SEKSYON 1: MESSAGE US & DIRECT CONTACT INFO -->
+    <div class="contact-card-outer">
+      <div class="contact-grid" style="display: grid; grid-template-columns: 0.85fr 1fr 1.3fr; gap: 20px; align-items: flex-start;">
+        
+        <div>
+          <h1 style="color: #0A192F; font-size: 3.2rem; font-weight: 800; margin: 0 0 10px 0; line-height: 1.1;">
+            Message us!
+          </h1>
+          <p style="color: #64748B; font-size: 0.95rem; font-style: italic; margin: 0 0 20px 0; line-height: 1.5;">
+            For inquiries or assistance, feel free to contact us.<br>
+            We are open Monday to Friday, 8 AM to 5 PM.
+          </p>
+        </div>
+
+        <div class="info-box">
+          <div class="info-box-icon">
+            <i class="fa-solid fa-phone" style="font-size: 1.4rem;"></i>
+            <i class="fa-solid fa-mobile-screen-button" style="font-size: 1.6rem;"></i>
+          </div>
+          <div class="info-box-text">
+            <div><a href="tel:0437786352">(043) 778 6352</a></div>
+            <div><a href="tel:0434305053">(043) 430 5053</a></div>
+            <div style="margin-top: 6px;"><a href="tel:+639171404751">+63 917 140 4751</a></div>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <div class="info-box-icon">
+            <i class="fa-regular fa-envelope" style="font-size: 2.2rem;"></i>
+          </div>
+          <div class="info-box-text">
+            <div><a href="mailto:marketing@mercadocollege.edu.ph">marketing@mercadocollege.edu.ph</a></div>
+            <div style="margin-top: 6px;"><a href="mailto:registrar@mercadocollege.edu.ph">registrar@mercadocollege.edu.ph</a></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SEKSYON 3: WE ARE LOCATED AT CARD -->
+    <div class="contact-card-outer">
+      <div class="map-grid" style="display: grid; grid-template-columns: 380px 1fr; gap: 40px; align-items: center;">
+        
+        <div class="map-frame-wrapper">
+          <iframe 
+            src="https://maps.google.com/maps?q=14.080859,121.1539281&hl=en&z=18&output=embed" 
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <div style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+          <div style="color: #0A192F; font-size: 4.5rem; margin-bottom: 5px; line-height: 1;">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+
+          <h2 style="color: #0A192F; font-size: 2.8rem; font-weight: 800; margin: 0 0 10px 0; line-height: 1.1;">
+            We are located at
+          </h2>
+
+          <p style="color: #0A192F; font-size: 1.15rem; font-weight: 700; margin: 0 0 15px 0; max-width: 550px; line-height: 1.4;">
+            143 Narra St., Mountview Subd., Brgy. 3, Tanauan City, Batangas 4232
+          </p>
+
+          <a href="https://www.google.com/maps/place/Mercado+College/@14.0808654,121.1536649,156m/data=!3m1!1e3!4m6!3m5!1s0x33bd6f00192dbc9d:0xee826fd9e4d6e501!8m2!3d14.080859!4d121.1539281!16s%2Fg%2F11mlgkhzz1?entry=ttu" target="_blank" rel="noopener noreferrer" class="directions-btn">
+            <i class="fa-solid fa-compass"></i> Get Directions
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SEKSYON 2: FAQ SECTION (Indibidwal na Cards na Walang Malaking Outer Cover) -->
+<div style="max-width: 1200px; margin: 40px auto; padding: 0 20px; box-sizing: border-box;">
+  
+  <div style="text-align: center; margin-bottom: 30px;">
+    <h2 style="font-size: 2.2rem; color: #0A192F; margin-bottom: 8px; font-weight: 800;">Frequently Asked Questions</h2>
+    <p style="color: #64748B; font-size: 0.95rem; margin: 0;">Find answers to common inquiries about Mercado College.</p>
+  </div>
+
+  <!-- Independent 2-Column Grid -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start;" class="faq-grid-container">
+    
+    <!-- KALIWANG COLUMN -->
+    <div style="display: flex; flex-direction: column; gap: 15px;">
+      
+          <!-- FAQ Item 1 -->
+    <details style="background: #ffffff; border: 2px solid #E2E8F0; border-radius: 20px; padding: 18px 22px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(10, 25, 47, 0.03);">
+      <summary style="font-weight: 700; color: #0A192F; cursor: pointer; font-size: 0.98rem; outline: none; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>What is the enrollment process for new students?</span>
+        <i class="fa-solid fa-chevron-down" style="font-size: 0.85rem; color: #64748B;"></i>
+      </summary>
+      <p style="margin-top: 12px; margin-bottom: 0; color: #475569; font-size: 0.9rem; line-height: 1.6; border-top: 1px solid #F1F5F9; padding-top: 12px;">
+        Visit the Admissions Office in Tanauan City with your required documents: Form 138/137, Certificate of Good Moral Character, Original PSA Birth Certificate, 2x2 &amp; 1x1 ID pictures (3 copies each), and NCAE/NSAT result. Applicants must also pass the entrance exam, interview, and physical exam at DMMC Industrial Clinic.
+      </p>
+    </details>
+
+      <!-- FAQ Item 3 -->
+      <details style="background: #ffffff; border: 2px solid #E2E8F0; border-radius: 20px; padding: 18px 22px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(10, 25, 47, 0.03);">
+        <summary style="font-weight: 700; color: #0A192F; cursor: pointer; font-size: 0.98rem; outline: none; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+          <span>What are the campus operating hours?</span>
+          <i class="fa-solid fa-chevron-down" style="font-size: 0.85rem; color: #64748B;"></i>
+        </summary>
+        <p style="margin-top: 12px; margin-bottom: 0; color: #475569; font-size: 0.9rem; line-height: 1.6; border-top: 1px solid #F1F5F9; padding-top: 12px;">
+          Administrative offices are open Monday through Friday, from 8:00 AM to 5:00 PM.
+        </p>
+      </details>
+
+    <!-- FAQ Item 5 -->
+    <details style="background: #ffffff; border: 2px solid #E2E8F0; border-radius: 20px; padding: 18px 22px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(10, 25, 47, 0.03);">
+      <summary style="font-weight: 700; color: #0A192F; cursor: pointer; font-size: 0.98rem; outline: none; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <span>Are scholarships and financial aid available?</span>
+        <i class="fa-solid fa-chevron-down" style="font-size: 0.85rem; color: #64748B;"></i>
+      </summary>
+      <p style="margin-top: 12px; margin-bottom: 0; color: #475569; font-size: 0.9rem; line-height: 1.6; border-top: 1px solid #F1F5F9; padding-top: 12px;">
+        Yes! We offer Institutional Scholarships (Daniel Mercado Scholarship, Entrant, Academic Excellence, Student Financial Assistance) for programs in Elementary/Secondary Education, Biology, Psychology, and Physical Therapy. External grants like Student Leadership are also available. Inquire at the Admissions Office to apply.
+      </p>
+    </details>
+
+    </div>
+
+    <!-- KANANG COLUMN -->
+    <div style="display: flex; flex-direction: column; gap: 15px;">
+      
+      <!-- FAQ Item 2 -->
+      <details style="background: #ffffff; border: 2px solid #E2E8F0; border-radius: 20px; padding: 18px 22px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(10, 25, 47, 0.03);">
+        <summary style="font-weight: 700; color: #0A192F; cursor: pointer; font-size: 0.98rem; outline: none; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+          <span>Can I request documents through email?</span>
+          <i class="fa-solid fa-chevron-down" style="font-size: 0.85rem; color: #64748B;"></i>
+        </summary>
+        <p style="margin-top: 12px; margin-bottom: 0; color: #475569; font-size: 0.9rem; line-height: 1.6; border-top: 1px solid #F1F5F9; padding-top: 12px;">
+          Yes, you may send your document requests or inquiries to <strong>registrar@mercadocollege.edu.ph</strong> along with your full details.
+        </p>
+      </details>
+
+      <!-- FAQ Item 4 -->
+      <details style="background: #ffffff; border: 2px solid #E2E8F0; border-radius: 20px; padding: 18px 22px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(10, 25, 47, 0.03);">
+        <summary style="font-weight: 700; color: #0A192F; cursor: pointer; font-size: 0.98rem; outline: none; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+          <span>What programs and courses do you offer?</span>
+          <i class="fa-solid fa-chevron-down" style="font-size: 0.85rem; color: #64748B;"></i>
+        </summary>
+        <p style="margin-top: 12px; margin-bottom: 0; color: #475569; font-size: 0.9rem; line-height: 1.6; border-top: 1px solid #F1F5F9; padding-top: 12px;">
+          We offer Basic Education, TESDA courses, and professional Degree Programs in Nursing, Midwifery, MedTech, PT, RadTech, Education, Psychology, and Business Administration.
+        </p>
+      </details>
+
+      <!-- FAQ Item 6 -->
+      <details style="background: #ffffff; border: 2px solid #E2E8F0; border-radius: 20px; padding: 18px 22px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(10, 25, 47, 0.03);">
+        <summary style="font-weight: 700; color: #0A192F; cursor: pointer; font-size: 0.98rem; outline: none; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+          <span>How do I request a Certificate of Good Moral Character?</span>
+          <i class="fa-solid fa-chevron-down" style="font-size: 0.85rem; color: #64748B;"></i>
+        </summary>
+        <p style="margin-top: 12px; margin-bottom: 0; color: #475569; font-size: 0.9rem; line-height: 1.6; border-top: 1px solid #F1F5F9; padding-top: 12px;">
+          Requests can be submitted through the Student Affairs Office or Registrar's Office along with your student clearance.
+        </p>
+      </details>
+
+    </div>
+
+  </div>
+</div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer style="background-color: #1A2F50; color: #ffffff; padding: 50px 40px 20px; border-top-left-radius: 30px; border-top-right-radius: 30px; margin-top: 40px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; padding-bottom: 40px; text-align: left;">
+      
+      <div style="flex: 1; min-width: 250px;">
+        <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 20px; text-align: left;">Get In Touch</h3>
+        <p style="font-size: 0.9rem; margin-bottom: 10px; line-height: 1.5; color: #E0E0E0;">143 Narra St., Mountview Subd., Brgy. 3, Tanauan City, Batangas</p>
+        <p style="font-size: 0.9rem; margin-bottom: 8px; color: #E0E0E0;">(043) 778 6352</p>
+        <p style="font-size: 0.9rem; margin-bottom: 8px; color: #E0E0E0;">(043) 430 5053</p>
+        <p style="font-size: 0.9rem; margin-bottom: 8px; color: #E0E0E0;">+63 917 140 4751</p>
+        <p style="font-size: 0.9rem; margin-bottom: 8px; color: #E0E0E0;">marketing@mercadocollege.edu.ph</p>
+        <p style="font-size: 0.9rem; margin-bottom: 0; color: #E0E0E0;">registrar@mercadocollege.edu.ph</p>
+      </div>
+
+      <div style="flex: 1; min-width: 200px; display: flex; flex-direction: column; align-items: flex-start;">
+        <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; margin-top: 0; text-align: left;">Quick Links</h3>
+        <ul style="list-style: none; padding: 0; margin: 0 0 25px 0; text-align: left;">
+          <li style="margin-bottom: 10px;"><a href="#" style="color: #E0E0E0; text-decoration: none; font-size: 0.95rem;">Careers</a></li>
+          <li style="margin-bottom: 10px;"><a href="#" style="color: #E0E0E0; text-decoration: none; font-size: 0.95rem;">Student Portal</a></li>
+        </ul>
+
+        <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; margin-top: 0; text-align: left;">Follow Us</h3>
+        <div style="display: flex; gap: 15px; font-size: 1.3rem; justify-content: flex-start; align-items: center;">
+          <a href="https://www.facebook.com/dmmc.ihs" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none;"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" style="color: #ffffff; text-decoration: none;"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.tiktok.com/@mercadocollege" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none;"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+
+      <div style="flex: 1.2; min-width: 280px; display: flex; align-items: center; justify-content: flex-end;">
+        <h2 style="font-size: 2.2rem; font-weight: 800; font-family: 'Source Serif Pro', Georgia, serif; line-height: 1.25; margin: 0; text-align: left; color: #ffffff;">
+          Locally Relevant.<br>
+          Globally Recognized.
+        </h2>
+      </div>
+
+    </div>
+
+    <div style="max-width: 1200px; margin: 0 auto; text-align: left; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.85rem; color: #B0C4DE;">
+      © Copyright 2026 Mercado College, All Rights Reserved.
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const btn = document.getElementById("backToTopBtn");
+
+      if (btn) {
+        window.addEventListener("scroll", function () {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+          
+          if (scrollTop > 200) {
+            btn.style.setProperty("display", "flex", "important");
+          } else {
+            btn.style.setProperty("display", "none", "important");
+          }
+        });
+
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+        });
+      }
+    });
+  </script>
+
+  <!-- Back to Top Button -->
+  <button id="backToTopBtn" 
+          aria-label="Back to top" 
+          title="Bumalik sa taas"
+          style="display: none; position: fixed !important; bottom: 30px !important; right: 30px !important; z-index: 99999 !important; width: 50px !important; height: 50px !important; background-color: #FFB800 !important; color: #1A2F50 !important; border: none !important; border-radius: 50% !important; font-size: 22px !important; font-weight: bold !important; cursor: pointer !important; align-items: center !important; justify-content: center !important; box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;">
+    ▲
+  </button>
+</body>
+</html>

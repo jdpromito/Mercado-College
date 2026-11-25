@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News & Events - Mercado College</title>
+
+  <!-- PREFETCH HEADERS: Inihanay na agad ang mga larawan sa memory para instant at rekta ang paglitaw -->
+  <link rel="prefetch" href="assets/flu1.jfif">
+  <link rel="prefetch" href="assets/flu2.jfif">
+  <link rel="prefetch" href="assets/flu3.jfif">
+  <link rel="prefetch" href="assets/flu4.jfif">
+  <link rel="prefetch" href="assets/nihonfukushi.jpg">
+  <link rel="prefetch" href="assets/basiclifesupport.jpg">
+  <link rel="prefetch" href="assets/mrandmsmercado.jpg">
+  <link rel="prefetch" href="assets/regmedtech.png">
+  <link rel="prefetch" href="assets/communityextension.jpg">
+
+  <style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Source Serif Pro', Georgia, serif !important;
+  }
+
+  body {
+    background-color: #ffffff;
+    color: #333333;
+    overflow-x: hidden;
+  }
+
+  /* TOP HEADER BAR */
+  .top-header {
+    background-color: #11223f !important;
+    color: #ffffff;
+    padding: 12px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  .header-logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .header-logo {
+    height: 75px !important;
+    width: auto !important;
+    object-fit: contain !important;
+    display: block !important;
+    filter: none !important;
+    box-shadow: none !important;
+  }
+
+  .header-center-title {
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .back-btn-header {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    transition: all 0.2s ease;
+  }
+
+  .back-btn-header:hover {
+    background-color: #FFB800 !important;
+    color: #0A192F !important;
+    border-color: #FFB800 !important;
+  }
+
+  /* MAIN CONTENT CONTAINER */
+  .event-details-container {
+    max-width: 1200px;
+    margin: 40px auto 20px auto;
+    padding: 0 40px;
+  }
+
+  .event-title {
+    color: #11223f;
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 35px;
+    letter-spacing: -0.5px;
+  }
+
+  /* TWO COLUMN LAYOUT */
+  .article-layout {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    margin-bottom: 50px;
+  }
+
+  .left-text-area {
+    flex: 1.1;
+  }
+
+  .left-text-area p {
+    color: #2c3e50;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    text-align: justify;
+  }
+
+  .right-image-area {
+    flex: 1.2;
+    position: static;
+  }
+
+  /* MAIN FEATURED PHOTO (PIC #1) */
+  .main-featured-img {
+    width: 100% !important;
+    max-width: 550px !important;
+    height: auto !important;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    display: block;
+    margin: 0 auto;
+    background-color: #ffffff !important; /* Puti para walang asul na lililitaw */
+  }
+
+  /* GALLERY SECTION (3 COLUMNS) */
+  .gallery-section {
+    max-width: 1200px;
+    margin: 0 auto 60px auto;
+    padding: 0 40px;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .gallery-item {
+    width: 100%;
+    height: 220px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    background-color: #ffffff !important; /* Tinanggal ang #f1f5f9; ginawang puti */
+    position: relative;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  /* MINI SLIDER BUTTONS PARA SA MEDTECH BOXES */
+  .mini-slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(17, 34, 63, 0.7);
+    color: white;
+    border: none;
+    font-size: 1rem;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+    display: none;
+  }
+
+  .mini-slider-btn:hover {
+    background-color: #FFB800;
+    color: #11223f;
+  }
+
+  .mini-prev { left: 8px; }
+  .mini-next { right: 8px; }
+
+  .page-footer-tagline {
+    text-align: center;
+    padding: 30px 0;
+    color: #11223f;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  /* RESPONSIVE DESIGN */
+  @media (max-width: 900px) {
+    .article-layout {
+      flex-direction: column-reverse;
+    }
+    .right-image-area {
+      width: 100%;
+      margin-bottom: 25px;
+    }
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+    .event-title {
+      font-size: 2.1rem;
+    }
+    .header-logo {
+      height: 60px !important;
+    }
+    .event-details-container, .gallery-section {
+      padding: 0 20px;
+    }
+  }
+  .gallery-item {
+    width: 100%;
+    height: 220px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    background-color: transparent !important; /* Walang kulay asul/abo sa likod */
+    position: relative;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: none !important; /* Tinanggal ang delay para rekta ang galaw */
+  }
+  html {
+  scroll-behavior: smooth;
+}
+@media (max-width: 768px) {
+  /* I-justify ang mga talata nang may magandang agwat at walang lumalaking puwang */
+  p, .article-content, .content-body {
+    text-align: justify !important;
+    text-justify: inter-word !important; /* Pinipigilan ang paglaki ng espasyo sa bawat titik */
+    hyphens: auto !important;           /* Naglalagay ng gitling kung kinakailangan para pantay ang agwat */
+    -webkit-hyphens: auto !important;
+    word-break: normal !important;
+  }
+}
+</style>
+</head>
+<body>
+
+  <!-- TOP HEADER BAR -->
+  <header class="top-header">
+    <div class="header-logo-container">
+      <img src="assets/logoto.png" alt="Mercado College Logo" class="header-logo" width="75" height="75" loading="eager">
+    </div>
+
+    <div class="header-center-title">NEWS & EVENTS</div>
+
+    <a href="javascript:history.back()" class="back-btn-header">
+      <span class="arrow">&larr;</span> Back
+    </a>
+  </header>
+
+  <!-- MAIN EVENT CONTAINER -->
+  <main class="event-details-container">
+    
+    <h1 class="event-title" id="display-title">
+      Event Title
+    </h1>
+
+    <div class="article-layout">
+      
+      <div class="left-text-area" id="display-desc">
+        <!-- Article text here -->
+      </div>
+
+      <div class="right-image-area">
+        <img id="display-main-img" src="assets/flu1.jfif" alt="Featured Event Image" class="main-featured-img" loading="eager" width="550" height="344">
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- GALLERY SECTION (Naka-hardcode ang initial image sources para walang blangkong state) -->
+  <section class="gallery-section">
+    <div class="gallery-grid">
+      
+      <!-- Kahon 1 -->
+      <div class="gallery-item" id="box-0">
+        <button class="mini-slider-btn mini-prev" onclick="manualSlide(0, -1)">&#10094;</button>
+        <img id="gallery-img-1" src="assets/flu2.jfif" alt="Event Gallery 1" loading="eager" width="350" height="220">
+        <button class="mini-slider-btn mini-next" onclick="manualSlide(0, 1)">&#10095;</button>
+      </div>
+
+      <!-- Kahon 2 -->
+      <div class="gallery-item" id="box-1">
+        <button class="mini-slider-btn mini-prev" onclick="manualSlide(1, -1)">&#10094;</button>
+        <img id="gallery-img-2" src="assets/flu3.jfif" alt="Event Gallery 2" loading="eager" width="350" height="220">
+        <button class="mini-slider-btn mini-next" onclick="manualSlide(1, 1)">&#10095;</button>
+      </div>
+
+      <!-- Kahon 3 -->
+      <div class="gallery-item" id="box-2">
+        <button class="mini-slider-btn mini-prev" onclick="manualSlide(2, -1)">&#10094;</button>
+        <img id="gallery-img-3" src="assets/flu4.jfif" alt="Event Gallery 3" loading="eager" width="350" height="220">
+        <button class="mini-slider-btn mini-next" onclick="manualSlide(2, 1)">&#10095;</button>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="page-footer-tagline">
+    LOCALLY RELEVANT. GLOBALLY RECOGNIZED.
+  </div>
+
+  <script>
+  const eventsData = {
+    "flu": {
+      title: "Mercado College Holds Influenza Awareness and Vaccination Program",
+      mainImg: "assets/flu1.jfif",
+      gallery: ["assets/flu2.jfif", "assets/flu3.jfif", "assets/flu4.jfif"],
+      desc: `
+        <p>Mercado College conducted its Influenza Awareness and Flu Vaccination Program on July 22, 2026, at the Mercado College Events Hall, promoting influenza prevention and health awareness among the campus community.</p>
+        <p>The program featured a seminar led by Dra. Jeremiah Micael Caraan, School Physician, who discussed influenza, including how it spreads, its possible complications, and ways to prevent infection.</p>
+      `
+    },
+    "nihon": {
+      title: "Nihon Fukushi University Visits Mercado College",
+      mainImg: "assets/nihonfukushi.jpg",
+      gallery: ["assets/nihonfukushi1.png", "assets/nihonfukushi2.png", "assets/nihonfukushi3.png"],
+      desc: `
+        <p>Mercado College proudly welcomed representatives and delegates from Nihon Fukushi University for a special academic benchmarking and cultural exchange program.</p>
+      `
+    },
+    "bls": {
+      title: "Basic Life Support Seminar & Training",
+      mainImg: "assets/basiclifesupport.jpg",
+      gallery: ["assets/basiclifesupport1.jfif", "assets/basiclifesupport2.jfif", "assets/basiclifesupport3.jfif"],
+      desc: `
+        <p>Every lifesaving skill begins with a solid foundation of knowledge. Day 1 of Basic Life Support (BLS) Training focused on the didactic phase, where participants from the School of Nursing and Midwifery strengthened their understanding of essential first aid concepts, patient assessment, and emergency response principles.</p>
+        <p>Day 2 of the Basic Life Support (BLS) Training focused on first aid, where future healthcare professionals strengthened their knowledge and practical skills in providing immediate care during emergencies.</p>
+      `
+    },
+    "mr-ms": {
+      title: "New Royalty Takes the Crown at Mercado College 2026",
+      mainImg: "assets/mrandmsmercado.jpg",
+      gallery: ["assets/mrandmsmercado3.jfif", "assets/mrandmsmercado1.jfif", "assets/mrandmsmercado2.jfif"],
+      desc: `
+        <p>The crown has found its rightful holders! Congratulations to our newly crowned Mr. and Ms. Mercado College 2026, who embodied confidence, grace, charisma, determination, and most importantly, integrity throughout the competition.</p>
+      `
+    },
+    "medtech": {
+      title: "Nine Mercado College Graduates Join Ranks of Registered Medical Technologists",
+      mainImg: "assets/regmedtech.png",
+      medtechGroups: [
+        ["assets/regmedtech1.png", "assets/regmedtech4.jfif", "assets/regmedtech7.jfif"],
+        ["assets/regmedtech2.png", "assets/regmedtech5.jfif", "assets/regmedtech8.jfif"],
+        ["assets/regmedtech3.jfif", "assets/regmedtech6.jfif", "assets/regmedtech9.jfif"]
+      ],
+      gallery: ["assets/regmedtech1.png", "assets/regmedtech2.png", "assets/regmedtech3.png"],
+      desc: `
+        <p>CONGRATULATIONS | August 2026 Medical Technologist Licensure Examination<br>
+        Mercado College proudly celebrates our newly Registered Medical Technologists who successfully passed the August 2026 examination!</p>
+        <p>
+        Ana Lindsay F. Arellano, RMT<br>
+        Ma. Czarina L. Bautista, RMT<br>
+        Andrea Mei M. Dela Cruz, RMT<br>
+        Vincent Samuel A. De Leon, RMT<br>
+        Daniela S. Ebora, RMT<br>
+        Jhammy Pearl L. Luna, RMT<br>
+        Alyza Kaye L. Mahiya, RMT<br>
+        Kenneth M. Mendoza, RMT<br>
+        Lea Grace M. Sanvictores, RMT
+        </p>
+      `
+    },
+    "community": {
+      title: "Mercado College Launches Community Extension Sustainability Program",
+      mainImg: "assets/communityextension.jpg",
+      gallery: ["assets/communityextension1.jfif", "assets/communityextension2.jfif", "assets/communityextension3.jfif"],
+      desc: `
+        <p>Mercado College officially launched its Community Extension Sustainability Program through a meaningful MOA Signing Ceremony with Barangay Maugat, Tanauan City, Batangas.</p>
+      `
+    }
+  };
+
+  let currentIndices = [0, 0, 0];
+  let activeEventData = null;
+  let isMedtech = false;
+  let autoSlideInterval = null;
+
+  function updateImages() {
+    for (let i = 0; i < 3; i++) {
+      const imgElem = document.getElementById(`gallery-img-${i + 1}`);
+      const group = activeEventData.medtechGroups[i];
+      imgElem.src = group[currentIndices[i]];
+    }
+  }
+
+  function moveMini(boxIndex, direction) {
+    if (!isMedtech || !activeEventData || !activeEventData.medtechGroups) return;
+    const group = activeEventData.medtechGroups[boxIndex];
+    currentIndices[boxIndex] += direction;
+
+    if (currentIndices[boxIndex] >= group.length) {
+      currentIndices[boxIndex] = 0;
+    } else if (currentIndices[boxIndex] < 0) {
+      currentIndices[boxIndex] = group.length - 1;
+    }
+    updateImages();
+  }
+
+  function manualSlide(boxIndex, direction) {
+    moveMini(boxIndex, direction);
+    resetAutoPlay();
+  }
+
+  function startAutoPlay() {
+    if (autoSlideInterval) clearInterval(autoSlideInterval);
+    autoSlideInterval = setInterval(() => {
+      if (isMedtech && activeEventData && activeEventData.medtechGroups) {
+        for (let i = 0; i < 3; i++) {
+          currentIndices[i] = (currentIndices[i] + 1) % activeEventData.medtechGroups[i].length;
+        }
+        updateImages();
+      }
+    }, 3500);
+  }
+
+  function resetAutoPlay() {
+    startAutoPlay();
+  }
+
+  function loadEventContent() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const eventKey = urlParams.get('event');
+
+    activeEventData = (eventsData[eventKey]) ? eventsData[eventKey] : eventsData["flu"];
+    isMedtech = (eventKey === 'medtech');
+
+    document.getElementById('display-title').innerText = activeEventData.title;
+    document.getElementById('display-desc').innerHTML = activeEventData.desc;
+    
+    const mainImgElem = document.getElementById('display-main-img');
+    mainImgElem.src = activeEventData.mainImg;
+
+    const btns = document.querySelectorAll('.mini-slider-btn');
+
+    if (isMedtech && activeEventData.medtechGroups) {
+      btns.forEach(btn => btn.style.display = 'block');
+      currentIndices = [0, 0, 0];
+      updateImages();
+      startAutoPlay();
+    } else {
+      btns.forEach(btn => btn.style.display = 'none');
+      if (autoSlideInterval) clearInterval(autoSlideInterval);
+
+      for (let i = 1; i <= 3; i++) {
+        const imgElem = document.getElementById(`gallery-img-${i}`);
+        if (activeEventData.gallery && activeEventData.gallery[i - 1]) {
+          imgElem.src = activeEventData.gallery[i - 1];
+        }
+      }
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', loadEventContent);
+</script>
+
+</body>
+</html>
